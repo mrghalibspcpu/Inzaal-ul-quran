@@ -1,8 +1,13 @@
 # Deliverable binary committed once at final delivery (kept at repo root as quran.db)
-# Intermediate build artifacts stay out of git; the translated CONTENT modules below ARE tracked.
+# Intermediate build artifacts stay out of git; translated CONTENT modules under content/ ARE tracked.
 work/*
-!work/content_*.py
 !work/apply_surah.py
 !work/verify.py
 !work/lint.py
 !work/progress.json
+
+# Deliverable DB is force-added only at final delivery (all 6,236 ayat verified)
+quran.db
+
+# Python cache artifacts
+__pycache__/
