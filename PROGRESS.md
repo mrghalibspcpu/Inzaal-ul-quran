@@ -6,11 +6,12 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 
 ## Completed surahs (verified)
 - **Surah 1 — Al-Fatiha (7/7 ayat)** ✔ complete, checked
-- **Surah 2 — Al-Baqarah (286/286 ayat)** ✔ complete, checked (verify.py ALL CHECKS PASSED)
-- **Surah 3 — Al-i-Imran (200/200 ayat)** ✔ complete, checked (verify.py ALL CHECKS PASSED)
-- **Surah 4 — An-Nisa (176/176 ayat)** ✔ complete, checked (verify.py ALL CHECKS PASSED)
+- **Surah 2 — Al-Baqarah (286/286 ayat)** ✔ complete, checked
+- **Surah 3 — Al-i-Imran (200/200 ayat)** ✔ complete, checked
+- **Surah 4 — An-Nisa (176/176 ayat)** ✔ complete, checked
+- **Surah 5 — Al-Ma'ida (120/120 ayat)** ✔ complete, checked (verify.py ALL CHECKS PASSED)
 
-Progress: **669 / 6236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **789 / 6236 ayat** rewritten so far. See `work/progress.json`.
 
 ## How the work is stored (safe from loss)
 Content modules (original Urdu wording, numbered-points tafsir) are committed under `work/content_*.py`.
@@ -25,6 +26,6 @@ will be committed at the repo root only when all 6,236 ayat are complete and ver
 - `work/lint.py` — suspicious-token scan of completed `tr`/`talighe` cells.
 
 ## Honest status
-Surahs 1–4 are fully complete and verified (669 ayat). Everything from Surah 5 — Al-Ma'ida onwards
-(5,567 ayat, through Surah 114) remains to be rewritten and checked. `quran.db` at the repo root
-currently contains the completed work for surahs 1–4. It is NOT final yet.
+Surahs 1–5 are fully complete and verified (789 ayat). Everything from Surah 6 — Al-An'am onwards
+(5,447 ayat, through Surah 114) remains to be rewritten and checked. `quran.db` at the repo root
+currently contains the completed work for surahs 1–5. It is NOT final yet.
