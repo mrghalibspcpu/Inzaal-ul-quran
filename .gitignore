@@ -1,0 +1,8 @@
+# Deliverable binary committed once at final delivery (kept at repo root as quran.db)
+# Intermediate build artifacts stay out of git; the translated CONTENT modules below ARE tracked.
+work/*
+!work/content_*.py
+!work/apply_surah.py
+!work/verify.py
+!work/lint.py
+!work/progress.json
