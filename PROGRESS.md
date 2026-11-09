@@ -13,8 +13,9 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 6 — Al-An'am (165/165 ayat)** ✔ complete
 - **Surah 7 — Al-A'raf (206/206 ayat)** ✔ complete
 - **Surah 8 — Al-Anfal (75/75 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
+- **Surah 9 — At-Tawbah (129/129 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **1,235 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **1,364 / 6,236 ayat** rewritten so far. See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
@@ -28,9 +29,9 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 ## Verification tooling
 - `work/verify.py` — integrity, schema/index equality vs original, per-row non-tr/talighe diff, counts.
 - `work/lint.py` — suspicious-token scan of completed `tr`/`talighe` cells.
-- Backups: `work/backups/quran.after-surah-001..008.db` and `quran.current-964.db`.
+- Backups: `work/backups/quran.after-surah-001..009.db` and `quran.current-964.db`.
 
 ## Honest status
-Surahs 1–8 are fully complete and verified (1,235 ayat). Everything from Surah 9 — At-Tawbah onwards
-(5,001 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
-work for surahs 1–8. It is NOT final yet; surah-by-surah work continues in order.
+Surahs 1–9 are fully complete and verified (1,364 ayat). Everything from Surah 10 — Yunus onwards
+(4,872 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
+work for surahs 1–9. It is NOT final yet; surah-by-surah work continues in order.
