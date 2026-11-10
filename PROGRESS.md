@@ -27,8 +27,9 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 20 — Ta-Ha (135/135 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 21 — Al-Anbiya (112/112 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 22 — Al-Hajj (78/78 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
+- **Surah 23 — Al-Mu'minun (118/118 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **2,673 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **2,791 / 6,236 ayat** rewritten so far. See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
@@ -42,12 +43,12 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 ## Verification tooling
 - `work/verify.py` — integrity, schema/index equality vs original, per-row non-tr/talighe diff, counts.
 - `work/lint.py` — suspicious-token scan of completed `tr`/`talighe` cells.
-- Backups: `work/backups/quran.current-2310.db` … `quran.current-2595.db`, `quran.after-surah-019.db` … `quran.after-surah-022.db` (fresh checkpoints after recovery; earlier checkpoints were lost with the sandbox reset).
+- Backups: `work/backups/quran.current-2310.db` … `quran.current-2595.db`, `quran.after-surah-019.db` … `quran.after-surah-023.db` (fresh checkpoints after recovery; earlier checkpoints were lost with the sandbox reset).
 
 ## Honest status
-Surahs 1–22 are fully complete and verified (2,673 ayat). Everything from Surah 23 — Al-Mu'minun onwards
-(3,563 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
-work for surahs 1–22. It is NOT final yet; surah-by-surah work continues in order.
+Surahs 1–23 are fully complete and verified (2,791 ayat). Everything from Surah 24 — An-Nur onwards
+(3,445 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
+work for surahs 1–23. It is NOT final yet; surah-by-surah work continues in order.
 
 ## Recovery note (2026-11-10)
 The local sandbox lost the binary databases (`quran.db`, `work/quran.original.db`, `work/backups/`).
