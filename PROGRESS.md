@@ -31,8 +31,9 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 24 — An-Nur (64/64 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 25 — Al-Furqan (77/77 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 26 — Ash-Shu'ara (227/227 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
+- **Surah 27 — An-Naml (93/93 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **3,159 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **3,252 / 6,236 ayat** rewritten so far. See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
