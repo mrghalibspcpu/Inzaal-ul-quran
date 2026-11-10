@@ -59,3 +59,6 @@ ShiaVerse database (`assets/quran.db`, 16,943,104 bytes) was re-fetched from the
 source used originally; `quran.db` was rebuilt from it by replaying all 236 committed `content/`
 part files; `work/verify.py` reports ALL CHECKS PASSED for the rebuilt database.
 Fresh checkpoints exist again under `work/backups/` (e.g. `quran.after-surah-019.db`).
+
+## Recovery note (2026-11-10, second occurrence)
+The sandbox lost the binary DBs again (gitignored): `quran.db`, `work/quran.original.db`, `work/backups/` were 0-byte/missing and local git was reset to the base commit. The remote branch `origin/arena/d4219406-inzaal-ul-quran` (tip d616c73) had every commit, and the committed `content/` tree was byte-identical to the lost working tree. The pristine ShiaVerse DB was re-fetched from upstream (`mrghalibspcpu/ShiaVerse` → `assets/quran.db`, blob `b7f13f1...`, 16,943,104 bytes, integrity ok), `quran.db` was rebuilt by replaying all committed part files, and `work/verify.py` reports ALL CHECKS PASSED (2,972 ayat; surah 26 at v40).
