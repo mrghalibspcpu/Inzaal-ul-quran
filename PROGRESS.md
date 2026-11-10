@@ -24,7 +24,7 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 17 — Al-Isra (111/111 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 18 — Al-Kahf (110/110 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **2,250 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **2,310 / 6,236 ayat** rewritten so far (Surah 19 in progress). See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
@@ -38,9 +38,17 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 ## Verification tooling
 - `work/verify.py` — integrity, schema/index equality vs original, per-row non-tr/talighe diff, counts.
 - `work/lint.py` — suspicious-token scan of completed `tr`/`talighe` cells.
-- Backups: `work/backups/quran.after-surah-001..012.db` (and older `quran.current-*.db` checkpoints).
+- Backups: `work/backups/quran.current-2310.db` (fresh checkpoint after recovery; earlier checkpoints were lost with the sandbox reset).
 
 ## Honest status
-Surahs 1–18 are fully complete and verified (2,250 ayat). Everything from Surah 19 — Maryam onwards
-(3,986 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
-work for surahs 1–18. It is NOT final yet; surah-by-surah work continues in order.
+Surahs 1–18 are fully complete and verified (2,250 ayat); Surah 19 — Maryam is in progress
+(ayat 1–60 of 98 applied, through ID 2310). Everything from Surah 19 stays in order.
+`quran.db` at the repo root currently contains the completed work for surahs 1–18 plus surah 19 ayat 1–60.
+It is NOT final yet; surah-by-surah work continues in order.
+
+## Recovery note (2026-11-10)
+The local sandbox lost the binary databases (`quran.db`, `work/quran.original.db`, `work/backups/`).
+All translated content lives in git under `content/`, so nothing committed was lost. The original
+ShiaVerse database (`assets/quran.db`, 16,943,104 bytes) was re-fetched from the same upstream
+source used originally; `quran.db` was rebuilt from it by replaying all 236 committed `content/`
+part files; `work/verify.py` reports ALL CHECKS PASSED for the rebuilt database.
