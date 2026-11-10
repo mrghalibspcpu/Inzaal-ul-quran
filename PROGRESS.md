@@ -21,8 +21,9 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 14 — Ibrahim (52/52 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 15 — Al-Hijr (99/99 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 16 — An-Nahl (128/128 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
+- **Surah 17 — Al-Isra (111/111 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **2,029 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **2,140 / 6,236 ayat** rewritten so far. See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
@@ -39,6 +40,6 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 - Backups: `work/backups/quran.after-surah-001..012.db` (and older `quran.current-*.db` checkpoints).
 
 ## Honest status
-Surahs 1–16 are fully complete and verified (2,029 ayat). Everything from Surah 17 — Al-Isra onwards
-(4,207 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
-work for surahs 1–16. It is NOT final yet; surah-by-surah work continues in order.
+Surahs 1–17 are fully complete and verified (2,140 ayat). Everything from Surah 18 — Al-Kahf onwards
+(4,096 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
+work for surahs 1–17. It is NOT final yet; surah-by-surah work continues in order.
