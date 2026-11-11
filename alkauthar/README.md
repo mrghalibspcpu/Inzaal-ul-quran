@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 84 (Al-Inshiqaq) completion.
-- Progress at snapshot: **5,909 / 6,236 ayat** rewritten (surahs 1–84 complete, 84 chapters fully translated & verified).
-- sha256: `fa93e90b14b7e451362fd603fbf9ac8b662bd4648ae964df088828c267b1b89a`
+- Committed: 2026-11-11, after Surah 85 (Al-Buruj) completion.
+- Progress at snapshot: **5,931 / 6,236 ayat** rewritten (surahs 1–85 complete, 85 chapters fully translated & verified).
+- sha256: `158cfff13fac45bf14467dd10dee6f16d8ccee66400011e68e0d4f72614462ed`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
