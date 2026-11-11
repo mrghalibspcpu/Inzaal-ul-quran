@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-10, after Surah 28 (Al-Qasas) completion.
-- Progress at snapshot: **3,340 / 6,236 ayat** rewritten (surahs 1–28 complete, 28 chapters fully translated & verified).
-- sha256: `dce31f6a49b37c243f06c2abc64f85109705dad756eb6c2f304adcd6c363ec21`
+- Committed: 2026-11-10, after Surah 29 (Al-Ankabut) completion.
+- Progress at snapshot: **3,409 / 6,236 ayat** rewritten (surahs 1–29 complete, 29 chapters fully translated & verified).
+- sha256: `5a8dfb075f136c59d0329d44ec17edf90017c808db0760884a12fecd38cc528f`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
