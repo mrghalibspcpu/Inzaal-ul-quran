@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 47 (Muhammad) completion.
-- Progress at snapshot: **4,583 / 6,236 ayat** rewritten (surahs 1–47 complete, 47 chapters fully translated & verified).
-- sha256: `a8afd71526358ef5d411a7ad2882cfeb2823c64c3a6891d6e7bd55a0f3ade952`
+- Committed: 2026-11-11, after Surah 48 (Al-Fath) completion.
+- Progress at snapshot: **4,612 / 6,236 ayat** rewritten (surahs 1–48 complete, 48 chapters fully translated & verified).
+- sha256: `bd6566e9749092ba5e12005623a33528a169ec83f1fc2ee8a07d7c5cb05f39a3`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
