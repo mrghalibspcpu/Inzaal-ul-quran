@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 39 (Az-Zumar) completion.
-- Progress at snapshot: **4,133 / 6,236 ayat** rewritten (surahs 1–39 complete, 39 chapters fully translated & verified).
-- sha256: `99e9b1545a3900685f0d82a81713f7bb2202fa2403cc2425e5b31e4ba06b5525`
+- Committed: 2026-11-11, after Surah 40 (Ghafir) completion.
+- Progress at snapshot: **4,218 / 6,236 ayat** rewritten (surahs 1–40 complete, 40 chapters fully translated & verified).
+- sha256: `81b02b103c010ebb08a6f787f2485a24505e998b1268528757605d1eefba712b`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
