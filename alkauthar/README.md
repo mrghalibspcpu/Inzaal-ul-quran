@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 111 (Al-Masad) completion.
-- Progress at snapshot: **6,221 / 6,236 ayat** rewritten (surahs 1–111 complete, 111 chapters fully translated & verified).
-- sha256: `cfb40c00e679d7bac3cfc1d83067d96e04addbbed9753e16fcaaa3852c450683`
+- Committed: 2026-11-11, after Surah 112 (Al-Ikhlas) completion.
+- Progress at snapshot: **6,225 / 6,236 ayat** rewritten (surahs 1–112 complete, 112 chapters fully translated & verified).
+- sha256: `40f81be8a8cb6c6b48b8102eec1b972e49dc32ea8a9b5f8f8391876bfcce0c18`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
