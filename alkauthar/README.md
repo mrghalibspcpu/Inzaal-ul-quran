@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 54 (Al-Qamar) completion.
-- Progress at snapshot: **4,901 / 6,236 ayat** rewritten (surahs 1–54 complete, 54 chapters fully translated & verified).
-- sha256: `aa309eed2448fae75ba25c19e004dcea95f63ba623a52e29b6701c37304eaac2`
+- Committed: 2026-11-11, after Surah 55 (Ar-Rahman) completion.
+- Progress at snapshot: **4,979 / 6,236 ayat** rewritten (surahs 1–55 complete, 55 chapters fully translated & verified).
+- sha256: `c319f795cff75b9ea76bf318cc5a00a5547577a4e5c85d3d7fa2b058d0644436`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
