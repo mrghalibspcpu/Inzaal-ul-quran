@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 98 (Al-Bayyinah) completion.
-- Progress at snapshot: **6,138 / 6,236 ayat** rewritten (surahs 1–98 complete, 98 chapters fully translated & verified).
-- sha256: `aff38d40a47730b0e12ec14723ce435d2556f8514009bb14f01267b33b8ff3cc`
+- Committed: 2026-11-11, after Surah 99 (Az-Zalzalah) completion.
+- Progress at snapshot: **6,146 / 6,236 ayat** rewritten (surahs 1–99 complete, 99 chapters fully translated & verified).
+- sha256: `2c4cf3a983423016253d89e5ae5e6dd2841f367ebf4217500fcdeb25a7281882`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
