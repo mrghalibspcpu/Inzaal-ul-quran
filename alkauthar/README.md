@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 79 (An-Nazi'at) completion.
-- Progress at snapshot: **5,758 / 6,236 ayat** rewritten (surahs 1–79 complete, 79 chapters fully translated & verified).
-- sha256: `cea24db2bc0d9640d77a859c301fee877cb77e0738577505366cb6129e2dc598`
+- Committed: 2026-11-11, after Surah 80 (Abasa) completion.
+- Progress at snapshot: **5,800 / 6,236 ayat** rewritten (surahs 1–80 complete, 80 chapters fully translated & verified).
+- sha256: `588c1f8d3d60b751d9a535239c93b7cd409089dc2c3fe8a8572cc81d6ce705bb`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
