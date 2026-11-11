@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 99 (Az-Zalzalah) completion.
-- Progress at snapshot: **6,146 / 6,236 ayat** rewritten (surahs 1–99 complete, 99 chapters fully translated & verified).
-- sha256: `2c4cf3a983423016253d89e5ae5e6dd2841f367ebf4217500fcdeb25a7281882`
+- Committed: 2026-11-11, after Surah 100 (Al-Adiyat) completion.
+- Progress at snapshot: **6,157 / 6,236 ayat** rewritten (surahs 1–100 complete, 100 chapters fully translated & verified).
+- sha256: `0d4d7a94ffeff9d074b1b428d51d9dad62d08dc1aadff06921815ac004fe9f9e`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
