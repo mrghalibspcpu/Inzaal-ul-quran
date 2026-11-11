@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 105 (Al-Fil) completion.
-- Progress at snapshot: **6,193 / 6,236 ayat** rewritten (surahs 1–105 complete, 105 chapters fully translated & verified).
-- sha256: `a99f3390bc5951b630f66e6b8629feb77b7b4a79752ac27f3fa3f73338d9ce1d`
+- Committed: 2026-11-11, after Surah 106 (Quraish) completion.
+- Progress at snapshot: **6,197 / 6,236 ayat** rewritten (surahs 1–106 complete, 106 chapters fully translated & verified).
+- sha256: `f715c061ef7331722bec264f4672284dee5ce61ce1c246acf21ef293f93b4ddb`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
