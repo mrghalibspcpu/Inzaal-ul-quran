@@ -34,8 +34,9 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 27 — An-Naml (93/93 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 28 — Al-Qasas (88/88 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 29 — Al-Ankabut (69/69 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
+- **Surah 30 — Ar-Rum (60/60 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **3,409 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **3,469 / 6,236 ayat** rewritten so far. See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
@@ -49,7 +50,7 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 ## Verification tooling
 - `work/verify.py` — integrity, schema/index equality vs original, per-row non-tr/talighe diff, counts.
 - `work/lint.py` — suspicious-token scan of completed `tr`/`talighe` cells.
-- Backups: `work/backups/quran.current-2310.db` … `quran.current-3159.db`, `quran.current-3209.db`, `quran.after-surah-019.db` … `quran.after-surah-027.db`, `quran.after-surah-028.db`, `quran.after-surah-029.db` (fresh checkpoints after recovery; earlier checkpoints were lost with the sandbox reset).
+- Backups: `work/backups/quran.current-2310.db` … `quran.current-3159.db`, `quran.current-3209.db`, `quran.after-surah-019.db` … `quran.after-surah-027.db`, `quran.after-surah-028.db`, `quran.after-surah-029.db`, `quran.after-surah-030.db` (fresh checkpoints after recovery; earlier checkpoints were lost with the sandbox reset).
 
 ## Honest status
 Surahs 1–26 are fully complete and verified (3,159 ayat). Everything from Surah 27 — An-Naml onwards

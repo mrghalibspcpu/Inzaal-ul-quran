@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-10, after Surah 29 (Al-Ankabut) completion.
-- Progress at snapshot: **3,409 / 6,236 ayat** rewritten (surahs 1–29 complete, 29 chapters fully translated & verified).
-- sha256: `5a8dfb075f136c59d0329d44ec17edf90017c808db0760884a12fecd38cc528f`
+- Committed: 2026-11-10, after Surah 30 (Ar-Rum) completion.
+- Progress at snapshot: **3,469 / 6,236 ayat** rewritten (surahs 1–30 complete, 30 chapters fully translated & verified).
+- sha256: `f9fa496f21a33dedefee8add0f2692f5093c5453f05710d0235eb1492d803888`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
