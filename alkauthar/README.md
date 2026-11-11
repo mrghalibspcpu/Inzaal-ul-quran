@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 62 (Al-Jumu'a) completion.
-- Progress at snapshot: **5,188 / 6,236 ayat** rewritten (surahs 1–62 complete, 62 chapters fully translated & verified).
-- sha256: `907f05e8ad04993a86aa9f04679baddb864132181207cc58aeac262c04696b21`
+- Committed: 2026-11-11, after Surah 63 (Al-Munafiqun) completion.
+- Progress at snapshot: **5,199 / 6,236 ayat** rewritten (surahs 1–63 complete, 63 chapters fully translated & verified).
+- sha256: `7d46b01db2eb3ea7bf809f932827cef423f31c8726561f8ebb5f95308e2c1891`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
