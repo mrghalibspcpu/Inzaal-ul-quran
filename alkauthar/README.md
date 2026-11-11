@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 108 (Al-Kauthar) completion.
-- Progress at snapshot: **6,207 / 6,236 ayat** rewritten (surahs 1–108 complete, 108 chapters fully translated & verified).
-- sha256: `4f10c6b0669279b0e1911d905f48dc66c4d3b816a00596e454d4389d69147c56`
+- Committed: 2026-11-11, after Surah 109 (Al-Kafirun) completion.
+- Progress at snapshot: **6,213 / 6,236 ayat** rewritten (surahs 1–109 complete, 109 chapters fully translated & verified).
+- sha256: `fca20913a36ab530b48b385e1d012209bb0c9135bbdcabbc1bc5b481727eb11b`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
