@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 112 (Al-Ikhlas) completion.
-- Progress at snapshot: **6,225 / 6,236 ayat** rewritten (surahs 1–112 complete, 112 chapters fully translated & verified).
-- sha256: `40f81be8a8cb6c6b48b8102eec1b972e49dc32ea8a9b5f8f8391876bfcce0c18`
+- Committed: 2026-11-11, after Surah 113 (Al-Falaq) completion.
+- Progress at snapshot: **6,230 / 6,236 ayat** rewritten (surahs 1–113 complete, 113 chapters fully translated & verified).
+- sha256: `b91e27b71625a7bc99089eb5746cd74a82251493495300da6ed5190b80970146`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
