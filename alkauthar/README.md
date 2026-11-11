@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-10, after Surah 32 (As-Sajdah) completion.
-- Progress at snapshot: **3,533 / 6,236 ayat** rewritten (surahs 1–32 complete, 32 chapters fully translated & verified).
-- sha256: `5423a1a7e2840e8b52d36ade4c0bb8294a46b67d8989eefe623182b101e190c5`
+- Committed: 2026-11-11, after Surah 39 (Az-Zumar) completion.
+- Progress at snapshot: **4,133 / 6,236 ayat** rewritten (surahs 1–39 complete, 39 chapters fully translated & verified).
+- sha256: `99e9b1545a3900685f0d82a81713f7bb2202fa2403cc2425e5b31e4ba06b5525`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
