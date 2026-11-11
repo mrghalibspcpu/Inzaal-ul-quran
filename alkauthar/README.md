@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 72 (Al-Jinn) completion.
-- Progress at snapshot: **5,475 / 6,236 ayat** rewritten (surahs 1–72 complete, 72 chapters fully translated & verified).
-- sha256: `8c5d110beb78304ded80f7780a34b9c4a50f3eee5297714905fa61e18c133dbe`
+- Committed: 2026-11-11, after Surah 73 (Al-Muzzammil) completion.
+- Progress at snapshot: **5,495 / 6,236 ayat** rewritten (surahs 1–73 complete, 73 chapters fully translated & verified).
+- sha256: `856b47a3b81be8689dfc3bd4f50b06ead888e121e7adca5c80343539816375bc`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
