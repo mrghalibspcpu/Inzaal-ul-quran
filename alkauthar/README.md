@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 66 (At-Tahrim) completion.
-- Progress at snapshot: **5,241 / 6,236 ayat** rewritten (surahs 1–66 complete, 66 chapters fully translated & verified).
-- sha256: `e13d8875a26963c57a09f8c1a825c4cffb1ea2384e7d5dd42a5773cc7e57abb7`
+- Committed: 2026-11-11, after Surah 67 (Al-Mulk) completion.
+- Progress at snapshot: **5,271 / 6,236 ayat** rewritten (surahs 1–67 complete, 67 chapters fully translated & verified).
+- sha256: `b93bcf387a2c280baf12758dd21ba26fd5b6ac1b90e7cd73a07693c9dad8ad64`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
