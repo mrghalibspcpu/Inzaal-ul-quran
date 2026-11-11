@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 68 (Al-Qalam) completion.
-- Progress at snapshot: **5,323 / 6,236 ayat** rewritten (surahs 1–68 complete, 68 chapters fully translated & verified).
-- sha256: `52dd26f4a29783dd8d8c5ae969f747becc7cab398997f761aee227c712610f2f`
+- Committed: 2026-11-11, after Surah 69 (Al-Haqqah) completion.
+- Progress at snapshot: **5,375 / 6,236 ayat** rewritten (surahs 1–69 complete, 69 chapters fully translated & verified).
+- sha256: `4b7372758261e86a9e2f140ae1790d09a3e4aef31e91bcfcb3b8079825be2b56`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 

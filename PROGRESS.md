@@ -73,8 +73,9 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 - **Surah 66 — At-Tahrim (12/12 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 67 — Al-Mulk (30/30 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 - **Surah 68 — Al-Qalam (52/52 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
+- **Surah 69 — Al-Haqqah (52/52 ayat)** ✔ complete (verify.py ALL CHECKS PASSED)
 
-Progress: **5,323 / 6,236 ayat** rewritten so far. See `work/progress.json`.
+Progress: **5,375 / 6,236 ayat** rewritten so far. See `work/progress.json`.
 
 ## Repo layout (content arranged surah by surah)
 Completed work is tracked under **`content/surah-NNN/`** — one folder per surah, part files of ~10 ayat each
@@ -88,12 +89,12 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 ## Verification tooling
 - `work/verify.py` — integrity, schema/index equality vs original, per-row non-tr/talighe diff, counts.
 - `work/lint.py` — suspicious-token scan of completed `tr`/`talighe` cells.
-- Backups: `work/backups/quran.current-2310.db` … `quran.current-3159.db`, `quran.current-3209.db`, `quran.after-surah-019.db` … `quran.after-surah-027.db`, `quran.after-surah-028.db`, `quran.after-surah-029.db`, `quran.after-surah-030.db`, `quran.after-surah-031.db`, `quran.after-surah-032.db`, `quran.after-surah-033.db`, `quran.after-surah-034.db`, `quran.after-surah-035.db`, `quran.after-surah-036.db`, `quran.after-surah-037.db`, `quran.after-surah-038.db`, `quran.after-surah-039.db`, `quran.after-surah-040.db`, `quran.after-surah-041.db`, `quran.after-surah-042.db`, `quran.after-surah-043.db`, `quran.after-surah-044.db`, `quran.after-surah-045.db`, `quran.after-surah-046.db`, `quran.after-surah-047.db`, `quran.after-surah-048.db`, `quran.after-surah-049.db`, `quran.after-surah-050.db`, `quran.after-surah-051.db`, `quran.after-surah-052.db`, `quran.after-surah-053.db`, `quran.after-surah-054.db`, `quran.after-surah-055.db`, `quran.after-surah-056.db`, `quran.after-surah-057.db`, `quran.after-surah-058.db`, `quran.after-surah-059.db`, `quran.after-surah-060.db`, `quran.after-surah-061.db`, `quran.after-surah-062.db`, `quran.after-surah-063.db`, `quran.after-surah-064.db`, `quran.after-surah-065.db`, `quran.after-surah-066.db`, `quran.after-surah-067.db`, `quran.after-surah-068.db` (fresh checkpoints after recovery; earlier checkpoints were lost with the sandbox reset).
+- Backups: `work/backups/quran.current-2310.db` … `quran.current-3159.db`, `quran.current-3209.db`, `quran.after-surah-019.db` … `quran.after-surah-027.db`, `quran.after-surah-028.db`, `quran.after-surah-029.db`, `quran.after-surah-030.db`, `quran.after-surah-031.db`, `quran.after-surah-032.db`, `quran.after-surah-033.db`, `quran.after-surah-034.db`, `quran.after-surah-035.db`, `quran.after-surah-036.db`, `quran.after-surah-037.db`, `quran.after-surah-038.db`, `quran.after-surah-039.db`, `quran.after-surah-040.db`, `quran.after-surah-041.db`, `quran.after-surah-042.db`, `quran.after-surah-043.db`, `quran.after-surah-044.db`, `quran.after-surah-045.db`, `quran.after-surah-046.db`, `quran.after-surah-047.db`, `quran.after-surah-048.db`, `quran.after-surah-049.db`, `quran.after-surah-050.db`, `quran.after-surah-051.db`, `quran.after-surah-052.db`, `quran.after-surah-053.db`, `quran.after-surah-054.db`, `quran.after-surah-055.db`, `quran.after-surah-056.db`, `quran.after-surah-057.db`, `quran.after-surah-058.db`, `quran.after-surah-059.db`, `quran.after-surah-060.db`, `quran.after-surah-061.db`, `quran.after-surah-062.db`, `quran.after-surah-063.db`, `quran.after-surah-064.db`, `quran.after-surah-065.db`, `quran.after-surah-066.db`, `quran.after-surah-067.db`, `quran.after-surah-068.db`, `quran.after-surah-069.db` (fresh checkpoints after recovery; earlier checkpoints were lost with the sandbox reset).
 
 ## Honest status
-Surahs 1–68 are fully complete and verified (5,323 ayat). Everything from Surah 69 — Al-Haqqah onwards
-(913 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
-work for surahs 1–68. It is NOT final yet; surah-by-surah work continues in order.
+Surahs 1–69 are fully complete and verified (5,375 ayat). Everything from Surah 70 — Al-Ma'arij onwards
+(861 ayat, through Surah 114) remains. `quran.db` at the repo root currently contains the completed
+work for surahs 1–69. It is NOT final yet; surah-by-surah work continues in order.
 
 ## Recovery note (2026-11-10)
 The local sandbox lost the binary databases (`quran.db`, `work/quran.original.db`, `work/backups/`).
