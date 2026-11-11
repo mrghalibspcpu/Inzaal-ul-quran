@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 53 (An-Najm) completion.
-- Progress at snapshot: **4,846 / 6,236 ayat** rewritten (surahs 1–53 complete, 53 chapters fully translated & verified).
-- sha256: `d3400298f4d34ad855c6b3057dff0b0e55af933175374723f8be231b1b8804e2`
+- Committed: 2026-11-11, after Surah 54 (Al-Qamar) completion.
+- Progress at snapshot: **4,901 / 6,236 ayat** rewritten (surahs 1–54 complete, 54 chapters fully translated & verified).
+- sha256: `aa309eed2448fae75ba25c19e004dcea95f63ba623a52e29b6701c37304eaac2`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
