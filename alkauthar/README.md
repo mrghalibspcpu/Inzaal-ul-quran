@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 77 (Al-Mursalat) completion.
-- Progress at snapshot: **5,672 / 6,236 ayat** rewritten (surahs 1–77 complete, 77 chapters fully translated & verified).
-- sha256: `3995629af43aa892062a71a17d74c6ec2d144ad293ca97c14db57ff5e0bdcdad`
+- Committed: 2026-11-11, after Surah 78 (An-Naba) completion.
+- Progress at snapshot: **5,712 / 6,236 ayat** rewritten (surahs 1–78 complete, 78 chapters fully translated & verified).
+- sha256: `3ee33f38517498cbabf1c89f595dbfa2c859462f7e4e251e4789bba7b340ee8d`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
