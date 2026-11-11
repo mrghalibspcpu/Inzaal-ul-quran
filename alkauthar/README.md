@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 60 (Al-Mumtahina) completion.
-- Progress at snapshot: **5,163 / 6,236 ayat** rewritten (surahs 1–60 complete, 60 chapters fully translated & verified).
-- sha256: `fff1f816168e15ee1c0294922b4fb3be455dd623319f82fcf84cc98550d3a0db`
+- Committed: 2026-11-11, after Surah 61 (As-Saff) completion.
+- Progress at snapshot: **5,177 / 6,236 ayat** rewritten (surahs 1–61 complete, 61 chapters fully translated & verified).
+- sha256: `cee30d6d050594ef4e8afe4200f3269621c5bfb04b3837a7ee94437b18b8d9f3`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
