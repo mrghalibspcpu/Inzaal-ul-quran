@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-10, after Surah 30 (Ar-Rum) completion.
-- Progress at snapshot: **3,469 / 6,236 ayat** rewritten (surahs 1–30 complete, 30 chapters fully translated & verified).
-- sha256: `f9fa496f21a33dedefee8add0f2692f5093c5453f05710d0235eb1492d803888`
+- Committed: 2026-11-10, after Surah 31 (Luqman) completion.
+- Progress at snapshot: **3,503 / 6,236 ayat** rewritten (surahs 1–31 complete, 31 chapters fully translated & verified).
+- sha256: `2c2bb7026b006133ded8c47fe3bd0941febd77224d69c158d6bf88c1936efac7`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
