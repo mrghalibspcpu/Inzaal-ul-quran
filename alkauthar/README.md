@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 92 (Al-Layl) completion.
-- Progress at snapshot: **6,079 / 6,236 ayat** rewritten (surahs 1–92 complete, 92 chapters fully translated & verified).
-- sha256: `ba2170e6c1031a45adcfc3874461ef77ec43c80a118ea4d1d03d68e32c2fe9c8`
+- Committed: 2026-11-11, after Surah 93 (Ad-Duha) completion.
+- Progress at snapshot: **6,090 / 6,236 ayat** rewritten (surahs 1–93 complete, 93 chapters fully translated & verified).
+- sha256: `9612a92908937e03c00338229992a3dd110b54eb10231cf52e957274a823e665`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
