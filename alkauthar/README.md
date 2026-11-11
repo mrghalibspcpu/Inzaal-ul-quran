@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 76 (Al-Insan) completion.
-- Progress at snapshot: **5,622 / 6,236 ayat** rewritten (surahs 1–76 complete, 76 chapters fully translated & verified).
-- sha256: `40347d07fa230ce183d8624c9a1bcb79555ef9b0f75e766c6faaafc94696879f`
+- Committed: 2026-11-11, after Surah 77 (Al-Mursalat) completion.
+- Progress at snapshot: **5,672 / 6,236 ayat** rewritten (surahs 1–77 complete, 77 chapters fully translated & verified).
+- sha256: `3995629af43aa892062a71a17d74c6ec2d144ad293ca97c14db57ff5e0bdcdad`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
