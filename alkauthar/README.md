@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 48 (Al-Fath) completion.
-- Progress at snapshot: **4,612 / 6,236 ayat** rewritten (surahs 1–48 complete, 48 chapters fully translated & verified).
-- sha256: `bd6566e9749092ba5e12005623a33528a169ec83f1fc2ee8a07d7c5cb05f39a3`
+- Committed: 2026-11-11, after Surah 49 (Al-Hujurat) completion.
+- Progress at snapshot: **4,630 / 6,236 ayat** rewritten (surahs 1–49 complete, 49 chapters fully translated & verified).
+- sha256: `f06db63b5de05504e26e92efda2510d4676cfc9c11af2053f725ac0d2f18c336`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
