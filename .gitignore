@@ -8,6 +8,8 @@ work/*
 
 # Deliverable DB is force-added only at final delivery (all 6,236 ayat verified)
 quran.db
+# Al-Kauthar deliverable copy IS tracked (committed separately on purpose)
+!alkauthar/quran.db
 
 # Python cache artifacts
 __pycache__/
