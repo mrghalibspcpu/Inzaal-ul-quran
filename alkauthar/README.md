@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 42 (Ash-Shura) completion.
-- Progress at snapshot: **4,325 / 6,236 ayat** rewritten (surahs 1–42 complete, 42 chapters fully translated & verified).
-- sha256: `bc9380bb4cf73e5de48af8e991fcf86b820afe699887fd7cf4b551828df6bf6d`
+- Committed: 2026-11-11, after Surah 43 (Az-Zukhruf) completion.
+- Progress at snapshot: **4,414 / 6,236 ayat** rewritten (surahs 1–43 complete, 43 chapters fully translated & verified).
+- sha256: `fa0d0e44fc9a71a31dab285408c15c6f7a5d83edc793772c230875aa5f8a7601`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 

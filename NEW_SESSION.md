@@ -18,10 +18,10 @@ Repo: `mrghalibspcpu/Inzaal-ul-quran` (already cloned at `/home/user/Inzaal-ul-q
 
 ## Current status (update this section at each surah completion)
 
-- Surahs **1–42 complete** (Al-Fatiha … Ash-Shura), verify.py = ALL CHECKS PASSED.
-- **4,325 / 6,236 ayat** done. `work/progress.json` is the authoritative per-ayah tracker (IDs list). `PROGRESS.md` tracks completed surahs and is bumped only at surah completion.
+- Surahs **1–43 complete** (Al-Fatiha … Az-Zukhruf), verify.py = ALL CHECKS PASSED.
+- **4,414 / 6,236 ayat** done. `work/progress.json` is the authoritative per-ayah tracker (IDs list). `PROGRESS.md` tracks completed surahs and is bumped only at surah completion.
 - Branch tip at time of writing: the surah-32 completion commit. Always check `git log --oneline -3` and `work/progress.json` first — **the status above may be stale; the repo wins.**
-- Next up: **Surah 43 — Az-Zukhruf** (ayat 1–89). Then surahs 44–114.
+- Next up: **Surah 44 — Ad-Dukhan** (ayat 1–59). Then surahs 45–114.
 
 ## Environment realities (read this before touching anything)
 
