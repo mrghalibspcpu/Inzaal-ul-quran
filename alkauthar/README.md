@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 41 (Fussilat) completion.
-- Progress at snapshot: **4,272 / 6,236 ayat** rewritten (surahs 1–41 complete, 41 chapters fully translated & verified).
-- sha256: `8b09bacdfba2cd7d0d4aa8b91ec1237fa21376b999b03d13640a3382adf5cad0`
+- Committed: 2026-11-11, after Surah 42 (Ash-Shura) completion.
+- Progress at snapshot: **4,325 / 6,236 ayat** rewritten (surahs 1–42 complete, 42 chapters fully translated & verified).
+- sha256: `bc9380bb4cf73e5de48af8e991fcf86b820afe699887fd7cf4b551828df6bf6d`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
