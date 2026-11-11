@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 113 (Al-Falaq) completion.
-- Progress at snapshot: **6,230 / 6,236 ayat** rewritten (surahs 1–113 complete, 113 chapters fully translated & verified).
-- sha256: `b91e27b71625a7bc99089eb5746cd74a82251493495300da6ed5190b80970146`
+- Committed: 2026-11-11, after Surah 114 (An-Nas) completion — **the Quran rewrite is COMPLETE**.
+- Progress at snapshot: **6,236 / 6,236 ayat** rewritten (all 114 chapters fully translated & verified).
+- sha256: `066359e9c77a9e74a2f724afb7b780e42986527448f5947c80f18ccd9a1d5069`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
