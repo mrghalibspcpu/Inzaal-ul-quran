@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 95 (At-Tin) completion.
-- Progress at snapshot: **6,106 / 6,236 ayat** rewritten (surahs 1–95 complete, 95 chapters fully translated & verified).
-- sha256: `1b04adb0faef4b588e693de70437f9d5ccbde0d0bf08f080b2ebbba1cb4c5724`
+- Committed: 2026-11-11, after Surah 96 (Al-Alaq) completion.
+- Progress at snapshot: **6,125 / 6,236 ayat** rewritten (surahs 1–96 complete, 96 chapters fully translated & verified).
+- sha256: `1eab119f1324ebe5b23c6acbda2e2891b242b3bb4d6d58737d7f3a2a1cbb8327`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
