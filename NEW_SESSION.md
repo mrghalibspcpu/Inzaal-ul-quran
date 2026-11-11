@@ -18,11 +18,10 @@ Repo: `mrghalibspcpu/Inzaal-ul-quran` (already cloned at `/home/user/Inzaal-ul-q
 
 ## Current status (update this section at each surah completion)
 
-- Surahs **1–36 complete** (Al-Fatiha … Yasin), verify.py = ALL CHECKS PASSED.
-- **Surah 37 — As-Saffat** IN PROGRESS: ayat 1–50 applied (IDs 3789–3838, p01–p05). Resume from **ayat 51** (ID 3839).
-- **3,838 / 6,236 ayat** done. `work/progress.json` is the authoritative per-ayah tracker (IDs list). `PROGRESS.md` tracks completed surahs and is bumped only at surah completion.
+- Surahs **1–37 complete** (Al-Fatiha … As-Saffat), verify.py = ALL CHECKS PASSED.
+- **3,970 / 6,236 ayat** done. `work/progress.json` is the authoritative per-ayah tracker (IDs list). `PROGRESS.md` tracks completed surahs and is bumped only at surah completion.
 - Branch tip at time of writing: the surah-32 completion commit. Always check `git log --oneline -3` and `work/progress.json` first — **the status above may be stale; the repo wins.**
-- Next up: **Surah 37 — As-Saffat** (ayat 51–182, IDs 3839–3970). Then surahs 38–114.
+- Next up: **Surah 38 — Sad** (ayat 1–88). Then surahs 39–114.
 
 ## Environment realities (read this before touching anything)
 
