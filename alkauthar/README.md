@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 44 (Ad-Dukhan) completion.
-- Progress at snapshot: **4,473 / 6,236 ayat** rewritten (surahs 1–44 complete, 44 chapters fully translated & verified).
-- sha256: `71a2ca42b962700e92cffa4c9590b9bb2c6efaefb203ca1573de7cf10a3e0e5c`
+- Committed: 2026-11-11, after Surah 45 (Al-Jathiya) completion.
+- Progress at snapshot: **4,510 / 6,236 ayat** rewritten (surahs 1–45 complete, 45 chapters fully translated & verified).
+- sha256: `fce8fc81d99de490567cb436203a9f667e37db703b94ecdda4cc4a2d5fa476e2`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
