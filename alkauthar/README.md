@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 89 (Al-Fajr) completion.
-- Progress at snapshot: **6,023 / 6,236 ayat** rewritten (surahs 1–89 complete, 89 chapters fully translated & verified).
-- sha256: `60cb3aca8f148d67fdb75964d68150ecf67d2d8963ccdeecdb4fd794da297b7c`
+- Committed: 2026-11-11, after Surah 90 (Al-Balad) completion.
+- Progress at snapshot: **6,043 / 6,236 ayat** rewritten (surahs 1–90 complete, 90 chapters fully translated & verified).
+- sha256: `b95387afbdba314ae58af3aa3ca68c1ddeefeca9ddc15fc1ef0253ad2a4a9e00`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
