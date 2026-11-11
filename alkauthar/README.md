@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 85 (Al-Buruj) completion.
-- Progress at snapshot: **5,931 / 6,236 ayat** rewritten (surahs 1–85 complete, 85 chapters fully translated & verified).
-- sha256: `158cfff13fac45bf14467dd10dee6f16d8ccee66400011e68e0d4f72614462ed`
+- Committed: 2026-11-11, after Surah 86 (At-Tariq) completion.
+- Progress at snapshot: **5,948 / 6,236 ayat** rewritten (surahs 1–86 complete, 86 chapters fully translated & verified).
+- sha256: `396f8237c36a1ad60a36223827d177992993594bef3def9bfb61b2cfaad4ddf4`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
