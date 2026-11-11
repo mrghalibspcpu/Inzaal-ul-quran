@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 82 (Al-Infitar) completion.
-- Progress at snapshot: **5,848 / 6,236 ayat** rewritten (surahs 1–82 complete, 82 chapters fully translated & verified).
-- sha256: `87423999ec3b3ea6e4925d10dcd853b9e5c3574224567c5811412938c6160f65`
+- Committed: 2026-11-11, after Surah 83 (Al-Mutaffifin) completion.
+- Progress at snapshot: **5,884 / 6,236 ayat** rewritten (surahs 1–83 complete, 83 chapters fully translated & verified).
+- sha256: `0cc9dde7304289df1ade97149a3a706e583703df0f38e7d242f62dc0fbfc001d`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
