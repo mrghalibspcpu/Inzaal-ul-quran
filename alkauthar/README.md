@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 57 (Al-Hadid) completion.
-- Progress at snapshot: **5,104 / 6,236 ayat** rewritten (surahs 1–57 complete, 57 chapters fully translated & verified).
-- sha256: `1486c25da5b4f2c62a70b05067350b0769a676adfe34c7ae21d25bac176b69e7`
+- Committed: 2026-11-11, after Surah 58 (Al-Mujadala) completion.
+- Progress at snapshot: **5,126 / 6,236 ayat** rewritten (surahs 1–58 complete, 58 chapters fully translated & verified).
+- sha256: `771f7f9ef62415e42dec46ced52d08471dd1f36b5b3baf61083ff82110b73e0a`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
