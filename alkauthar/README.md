@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 52 (At-Tur) completion.
-- Progress at snapshot: **4,784 / 6,236 ayat** rewritten (surahs 1–52 complete, 52 chapters fully translated & verified).
-- sha256: `dade97337bb88a35afd65a336e3f44aaf8ea4730dbe0f5d757a17417478a4680`
+- Committed: 2026-11-11, after Surah 53 (An-Najm) completion.
+- Progress at snapshot: **4,846 / 6,236 ayat** rewritten (surahs 1–53 complete, 53 chapters fully translated & verified).
+- sha256: `d3400298f4d34ad855c6b3057dff0b0e55af933175374723f8be231b1b8804e2`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
