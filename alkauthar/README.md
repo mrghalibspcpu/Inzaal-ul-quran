@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 61 (As-Saff) completion.
-- Progress at snapshot: **5,177 / 6,236 ayat** rewritten (surahs 1–61 complete, 61 chapters fully translated & verified).
-- sha256: `cee30d6d050594ef4e8afe4200f3269621c5bfb04b3837a7ee94437b18b8d9f3`
+- Committed: 2026-11-11, after Surah 62 (Al-Jumu'a) completion.
+- Progress at snapshot: **5,188 / 6,236 ayat** rewritten (surahs 1–62 complete, 62 chapters fully translated & verified).
+- sha256: `907f05e8ad04993a86aa9f04679baddb864132181207cc58aeac262c04696b21`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
