@@ -15,9 +15,9 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 102 (At-Takathur) completion.
-- Progress at snapshot: **6,176 / 6,236 ayat** rewritten (surahs 1–102 complete, 102 chapters fully translated & verified).
-- sha256: `f93e0f4c62c298bda60beb413aba91c4428bd5eb6bf3913b288998feb0ac24ea`
+- Committed: 2026-11-11, after Surah 103 (Al-Asr) completion.
+- Progress at snapshot: **6,179 / 6,236 ayat** rewritten (surahs 1–103 complete, 103 chapters fully translated & verified).
+- sha256: `26550dab8d776485cdeef8a3ae5f06f99b7d85f439089631ae8fc57ab6f67054`
 - Size: 14 MiB (16,943,104 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
 
