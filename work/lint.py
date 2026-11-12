@@ -3,10 +3,11 @@
 import json
 import re
 import sqlite3
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DB = ROOT / 'quran.db'
+DB = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'quran.db'
 progress = json.loads((ROOT / 'work' / 'progress.json').read_text())
 ids = progress['completed_ayah_ids']
 

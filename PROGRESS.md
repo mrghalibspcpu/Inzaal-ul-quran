@@ -4,6 +4,17 @@ Deliverable: `quran.db` (ShiaVerse Android app) — modified copy of the origina
 Only `tr` (Urdu translation) and `talighe` (Urdu tafsir notes) are changed. All Arabic text, IDs,
 chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are byte-identical to the original.
 
+## Deliverables (2026-11-12)
+
+- `inzaal-ul-quran.db` (root, tracked) — ShiaVerse-identical schema, rewritten Urdu `tr`/`talighe`, QA pass committed as `eb1f2ee`. sha256 `3277241b844bcc33d4e84544f9121839a3723209b411bc04613471d90441c112`.
+- `alkauthar/quran.db` (root, tracked) — byte-identical snapshot of the above for the Al-Kauthar app.
+- `inzaal-ul-quran-shia.db` (root, tracked) — NEW Shia-enriched DB (same base + enrichment appended to `talighe`):
+  - **1,330 ayat** carry an `اہلِ بیتؑ کا نکتہ` — Ahl al-Bayt points sourced from BOTH Tafsir-e-Mubeen (Dr Hassan Rizvi, pristine `work/quran.original.db`) and Tafsir al-Mizan (Arabic, passage per ayah; `app-furqan/quran-app-data`, CC BY-ND 4.0 — reference/attribution only). Al-Kauthar could not be fetched from this sandbox (APK hosts blocked) — 2-of-3 rule ran as 2-of-2 for now; Al-Kauthar can be folded in later.
+  - **6,122 / 6,122 non-surah-first ayat** (all except the 114 surah-opening ayat) carry a `ربط` line linking them to the previous ayah (6,120 generated + IDs 12, 27 hand-written by the rewrite).
+  - Verify = ALL CHECKS PASSED (Arabic/schema/metadata byte-identical); lint = 0 suspicious; quote balance 20,178/20,178; 0 invisible chars in added text.
+  - sha256 `1ca5dfa6bd17d5cb4ce905e56b8a59578dfd4ff06136bb4e494805ac1dbd41ee`.
+  - Rebuild recipe: rebuild `quran.db` (pristine + `content/**`) → `cp quran.db inzaal-ul-quran-shia.db` → `python3 work/enrich_shia.py inzaal-ul-quran-shia.db`.
+
 ## Completed surahs (verified)
 - **Surah 1 — Al-Fatiha (7/7 ayat)** ✔ complete
 - **Surah 2 — Al-Baqarah (286/286 ayat)** ✔ complete

@@ -15,11 +15,20 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Committed: 2026-11-11, after Surah 114 (An-Nas) completion — **the Quran rewrite is COMPLETE**.
+- Refreshed: 2026-11-12 (Urdu translation & tafsir QA commit `eb1f2ee`) — **the Quran rewrite and QA pass are COMPLETE**.
 - Progress at snapshot: **6,236 / 6,236 ayat** rewritten (all 114 chapters fully translated & verified).
-- sha256: `066359e9c77a9e74a2f724afb7b780e42986527448f5947c80f18ccd9a1d5069`
-- Size: 14 MiB (16,943,104 bytes).
+- sha256: `3277241b844bcc33d4e84544f9121839a3723209b411bc04613471d90441c112`
+- Size: ~11 MiB (11,062,272 bytes).
 - Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
+
+## Note on `inzaal-ul-quran-shia.db`
+
+A separate, Shia-enriched database is committed at the repository root as **`inzaal-ul-quran-shia.db`** (2026-11-12, sha256 `1ca5dfa6bd17d5cb4ce905e56b8a59578dfd4ff06136bb4e494805ac1dbd41ee`). It is the same base as this file PLUS, appended to every `talighe`:
+
+- `اہلِ بیتؑ کا نکتہ` for **1,330 ayat** where BOTH Tafsir-e-Mubeen (Dr Hassan Rizvi, pristine ShiaVerse DB) and Tafsir al-Mizan (Arabic; CC BY-ND 4.0, used for reference/attribution) mention Ahl al-Bayt material.
+- `ربط` (previous-verse link) for **6,122 ayat** — every ayah except each surah's first.
+
+This `alkauthar/quran.db` snapshot intentionally remains the QA-refreshed non-enriched deliverable; copy root `inzaal-ul-quran-shia.db` instead if you want the Shia-enriched edition.
 
 This snapshot is refreshed at every surah completion (`cp quran.db alkauthar/quran.db` + commit). Check `git log -- alkauthar/` for the latest refresh, and `work/progress.json` for authoritative per-ayah state.
 
