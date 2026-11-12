@@ -4,7 +4,7 @@ This folder carries the modified ShiaVerse Quran database for the Al-Kauthar app
 
 ## What this file is
 
-`alkauthar/quran.db` is a copy of the working deliverable `quran.db` (repo root, gitignored by design). It is a **modified copy** of the pristine upstream ShiaVerse database (`mrghalibspcpu/ShiaVerse` → `assets/quran.db`, blob `b7f13f14332dfbe90dc57c9a762db19cf885b236`, 6,236 Quran rows).
+`alkauthar/quran.db` is a copy of the working deliverable `quran.db` (repo root, gitignored by design). It is byte-identical to the committed root deliverable `inzaal-ul-quran.db` (same sha256). It is a **modified copy** of the pristine upstream ShiaVerse database (`mrghalibspcpu/ShiaVerse` → `assets/quran.db`, blob `b7f13f14332dfbe90dc57c9a762db19cf885b236`, 6,236 Quran rows).
 
 Only two columns are changed versus the pristine original:
 

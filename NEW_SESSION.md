@@ -21,7 +21,7 @@ Repo: `mrghalibspcpu/Inzaal-ul-quran` (already cloned at `/home/user/Inzaal-ul-q
 - **ALL 114 surahs COMPLETE** (Al-Fatiha … An-Nas), verify.py = ALL CHECKS PASSED.
 - **6,236 / 6,236 ayat** done — the Quran rewrite is finished. `work/progress.json` is the authoritative per-ayah tracker (IDs list). `PROGRESS.md` tracks completed surahs and is bumped only at surah completion.
 - Branch tip at time of writing: the surah-32 completion commit. Always check `git log --oneline -3` and `work/progress.json` first — **the status above may be stale; the repo wins.**
-- The Quran rewrite is **COMPLETE**. Remaining work: Urdu completion reports for surahs 48–114 (through 47 delivered).
+- **The new Inzaal-ul-Quran database is committed at the repo root as `inzaal-ul-quran.db`** (2026-11-12) — all 114 surahs, schema byte-identical to the ShiaVerse `quran.db` (tables, views, indexes, `ChapterProperty`, `android_metadata`), only `Quran.tr` / `Quran.talighe` rewritten. sha256: `066359e9c77a9e74a2f724afb7b780e42986527448f5947c80f18ccd9a1d5069` (byte-identical to `alkauthar/quran.db` and the `quran.db` working copy). The Quran rewrite is **COMPLETE**. Remaining work: Urdu completion reports for surahs 48–114 (through 47 delivered).
 
 ## Environment realities (read this before touching anything)
 

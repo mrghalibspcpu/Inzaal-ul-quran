@@ -128,8 +128,10 @@ Completed work is tracked under **`content/surah-NNN/`** — one folder per sura
 
 ## How the work is stored (safe from loss)
 The translated content is committed under `content/surah-NNN/*.py`. Rebuild recipe: `content/README.md`.
-The large binary DBs (`quran.db`, `work/quran.original.db`, `work/backups/`) are gitignored; the final
-cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are done and verified.
+The working binaries (`quran.db`, `work/quran.original.db`, `work/backups/`) are gitignored; the final
+cumulative database **has been committed at the repo root as `inzaal-ul-quran.db`** (all 6,236 ayat verified;
+schema byte-identical to the ShiaVerse `quran.db`; sha256 `066359e9c77a9e74a2f724afb7b780e42986527448f5947c80f18ccd9a1d5069`).
+`alkauthar/quran.db` is a second tracked copy with identical bytes, kept for the Al-Kauthar app.
 
 ## Verification tooling
 - `work/verify.py` — integrity, schema/index equality vs original, per-row non-tr/talighe diff, counts.
@@ -138,7 +140,7 @@ cumulative `quran.db` will be committed at the repo root once all 6,236 ayat are
 
 ## Honest status
 All 114 surahs are fully complete and verified (6,236 ayat). The Quran rewrite is finished.
-`quran.db` at the repo root contains the complete work for all 114 surahs. Commit `1ed5954` applied surah 114. It is NOT final yet; surah-by-surah work continues in order.
+`inzaal-ul-quran.db` at the repo root (committed; sha256 `066359e9…`) contains the complete work for all 114 surahs, as does `alkauthar/quran.db` with identical bytes. Commit `1ed5954` applied surah 114; commit at delivery added `inzaal-ul-quran.db`. The rewrite is complete and verified.
 
 ## Recovery note (2026-11-10)
 The local sandbox lost the binary databases (`quran.db`, `work/quran.original.db`, `work/backups/`).
