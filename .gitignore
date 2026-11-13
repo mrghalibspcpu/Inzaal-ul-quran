@@ -6,6 +6,9 @@ work/*
 !work/lint.py
 !work/progress.json
 !work/enrich_shia.py
+!work/apply_field_notes.py
+!work/field_notes/
+!work/field_notes/**
 
 # Deliverable DB is force-added only at final delivery (all 6,236 ayat verified)
 quran.db
