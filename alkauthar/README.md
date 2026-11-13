@@ -15,11 +15,11 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Refreshed: 2026-11-13 — now carrying the rewritten Urdu work **plus the curated Ahl al-Bayt points** (this snapshot is no longer the non-enriched one).
+- Refreshed: 2026-11-13 — now carrying the rewritten Urdu work **plus the curated Ahl al-Bayt points and the appended `مزید تجزیاتی نکات:` field-analysis layer (158 ayat)** (second refresh, still this date).
 - Progress at snapshot: **6,236 / 6,236 ayat** rewritten (all 114 chapters fully translated & verified).
-- sha256: `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`
+- sha256: `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56`
 - Size: ~11 MB (11,078,656 bytes).
-- Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order. Contains `اہلِ بیتؑ کا نکتہ` in **20 ayat only** (the ayat about/attributed to Ahl al-Bayt), and **no `ربط` lines anywhere**.
+- Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order. Contains `اہلِ بیتؑ کا نکتہ` in **20 ayat only** (the ayat about/attributed to Ahl al-Bayt), an appended `مزید تجزیاتی نکات:` block in **158 ayat** (see PROGRESS.md / NEW_SESSION.md), and **no `ربط` lines anywhere**.
 
 ## Note on `inzaal-ul-quran-shia.db`
 

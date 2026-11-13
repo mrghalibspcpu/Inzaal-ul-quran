@@ -21,7 +21,7 @@ Repo: `mrghalibspcpu/Inzaal-ul-quran` (already cloned at `/home/user/Inzaal-ul-q
 - **ALL 114 surahs COMPLETE** (Al-Fatiha … An-Nas), verify.py = ALL CHECKS PASSED.
 - **6,236 / 6,236 ayat** done — the Quran rewrite is finished. `work/progress.json` is the authoritative per-ayah tracker (IDs list). `PROGRESS.md` tracks completed surahs and is bumped only at surah completion.
 - Branch tip at time of writing: `66bd3a0` initially, superseded by the 2026-11-13 delivery commit on this branch (curated Ahl al-Bayt points; ربط removed everywhere; five Urdu translation fixes now actually in the DB). Always check `git log --oneline -3` and `work/progress.json` first — **the status above may be stale; the repo wins.**
-- **Deliverable DB**: root `inzaal-ul-quran.db` (and tracked snapshot `alkauthar/quran.db`, byte-identical), sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968` (2026-11-13). Only `Quran.tr` / `Quran.talighe` differ from pristine. It contains, on top of the rewritten Urdu translation/tafsir:
+- **Deliverable DB**: root `inzaal-ul-quran.db` (and tracked snapshot `alkauthar/quran.db`, byte-identical), sha256 `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56` (2026-11-13, second refresh — field-analysis layer added). Only `Quran.tr` / `Quran.talighe` differ from pristine. It contains, on top of the rewritten Urdu translation/tafsir:
   - `اہلِ بیتؑ کا نکتہ` — added to **20 ayat only**, exclusively the ayat that are themselves about Ahl al-Bayt or traditionally attributed to them (2:124, 3:33, 3:61, 3:103, 4:59, 5:3, 5:55, 5:67, 8:41, 9:100, 24:55, 33:33, 33:56, 42:23, 56:10, 59:7, 76:1, 76:7, 76:8, 108:1). Each point is hand-written in easy, عام فہم Urdu and cites Tafsir-e-Mubeen (Dr Hassan Rizvi, pristine `work/quran.original.db`) and Tafsir al-Mizan (Arabic, passage per ayah; `app-furqan/quran-app-data`, CC BY-ND 4.0 — reference/attribution only). Al-Kauthar (`تفسیر الکوثر` by Sheikh Mohsin Ali Najafi) could NOT be fetched (Play Store/APK mirrors blocked) — Mubeen+Mizan 2-of-2.
   - **No `ربط` lines anywhere.** The previous-verse link sections were removed completely — the 2 hand-written ones (IDs 12, 27) from `content/` and the generated ones — per the user's directive of 2026-11-12.
   - The five Urdu translation fixes (IDs 4079, 5147, 5757, 5988, 6014) that were committed in `content/` but never made it into the previously released DB are now included.
@@ -29,13 +29,36 @@ Repo: `mrghalibspcpu/Inzaal-ul-quran` (already cloned at `/home/user/Inzaal-ul-q
   - `inzaal-ul-quran-shia.db` (the 2026-11-12 auto-enriched DB with 1,330 points) was **removed from the repo at the user's request**; its content is superseded by the curated build above.
 
 
+
+## Field-analysis layer (added 2026-11-13)
+
+On top of the rewritten Urdu tafsir and the 20 curated Ahl al-Bayt points, the deliverable now carries an appended
+`مزید تجزیاتی نکات:` block in **158 ayat**. These are hand-written عام فہم Urdu notes giving the scholarlyally-grounded
+grounds ("یہ آیت حق و صادق کیوں ہے") for ayat that carry a clearly confirmable external dimension — e.g. embryology
+stages (22:5, 23:12–14, 75:37–38, 76:2, 86:6–7 …), cosmology & orbits (21:30, 41:9–12, 13:2, 21:33, 36:38–40 …),
+time & relativity-analogue ayat (22:47, 29:14, 32:5, 70:4 …), mountains-as-roots geology (78:7, 27:88 …),
+seas/barzakh halocline (25:53, 55:19–20 …), iron & stellar nucleosynthesis (57:25), bee/honey (16:68–69),
+sleep/chronobiology (78:9–11), Pharaoh's mummy (10:92), Thamud rock-cut dwellings (15:82, 26:149),
+Abraha's elephant year (105:1), Romans' prophecy (30:2–5), Badr victory prophecy (54:45),
+pure-monotheism & logic arguments (2:258, 6:76–79, 21:66–67, 36:79, 16:125, 42:11, 112:1),
+inheritance arithmetic (4:11, 4:12, 4:176), famine/storage planning (12:47),
+riba/khamr economics & health (2:275, 2:278–279, 5:90), environmental corruption (30:41, 2:11, 7:56),
+and cross-tradition Ahl al-Bayt tasdiq on the 20 curated ayat (hadith al-Kisa', hadith al-Thaqalayn,
+hadith al-Ghadir, ayat al-Fuji'ah…). **Never names the field label in the output** — content only.
+Every note was lint-clean (0 suspicious) and verify = ALL CHECKS PASSED at delivery.
+
+- Tool: `work/apply_field_notes.py` (tracked; appends/replaces the marker block; only `talighe` touched).
+- Content: `work/field_notes/notes_01_embryology.py` … `notes_10_stragglers.py` (tracked).
+- Apply after the base rebuild and after `enrich_shia.py`: replay sorted `work/field_notes/notes_*.py` (see Environment realities #4).
+- Remaining ~6,078 ayat were scanned programmatically (keyword/shape scan) — they are legal, devotional, moral or narrative ayat where no external field confirms/refutes the text; they carry no added block (no filler). If the user later wants extended notes for a specific bucket (fiqh / adab / ethics), extend the same pipeline surah-by-surah.
+
 ## Environment realities (read this before touching anything)
 
 1. **The sandbox resets without warning** (has happened 4 times, most recently 2026-11-10 — repo reverted to base commit; `quran.db`, `work/*.db`, `/tmp` lost; untracked `content/` survived). Therefore: (a) content modules in git are the source of truth, (b) `alkauthar/quran.db` is a tracked snapshot of the deliverable refreshed at surah completions, (c) rebuild steps below handle a full wipe.
 2. **Blocked hosts**: `raw.githubusercontent.com` (returns empty) and `release-assets.githubusercontent.com` (connection EOF). Use `api.github.com` instead — it works.
 3. **Pristine DB re-fetch** (only after a wipe): 
    `curl -sS -H "Accept: application/vnd.github+json" https://api.github.com/repos/mrghalibspcpu/ShiaVerse/git/blobs/b7f13f14332dfbe90dc57c9a762db19cf885b236` → base64-decode `.content` → save as BOTH `work/quran.original.db` and `./quran.db`. Integrity: 16,943,104 bytes, 6,236 rows, `pragma integrity_check` = ok. sha256 of deliverable at surah-28 snapshot: `dce31f6a…` (see `alkauthar/README.md`).
-4. **Full rebuild after wipe**: `git fetch -q origin arena/d4219406-inzaal-ul-quran && git reset --hard origin/arena/d4219406-inzaal-ul-quran` → re-fetch pristine blob → `find content -name '*.py' | sort` → replay each through `python3 work/apply_surah.py` → `python3 work/lint.py && python3 work/verify.py` → `cp quran.db inzaal-ul-quran.db` → `python3 work/enrich_shia.py inzaal-ul-quran.db` (adds the 20 curated Ahl al-Bayt points; verify/lint again — must end with ALL CHECKS PASSED / 0 suspicious) → `cp inzaal-ul-quran.db alkauthar/quran.db`. No other steps are valid recovery.
+4. **Full rebuild after wipe**: `git fetch -q origin arena/d4219406-inzaal-ul-quran && git reset --hard origin/arena/d4219406-inzaal-ul-quran` → re-fetch pristine blob → `find content -name '*.py' | sort` → replay each through `python3 work/apply_surah.py` → `python3 work/lint.py && python3 work/verify.py` → `cp quran.db inzaal-ul-quran.db` → `python3 work/enrich_shia.py inzaal-ul-quran.db` (adds the 20 curated Ahl al-Bayt points; verify/lint again — must end with ALL CHECKS PASSED / 0 suspicious) → apply field-analysis notes: `for f in $(ls work/field_notes/notes_*.py | sort); do python3 work/apply_field_notes.py "$f"; done` (idempotent; appends/replaces the «مزید تجزیاتی نکات:» block in talighe) → `cp inzaal-ul-quran.db alkauthar/quran.db`. No other steps are valid recovery.
 
 ## Per-part workflow (repeat for every ~10 ayat)
 

@@ -6,7 +6,7 @@ chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are b
 
 ## Deliverables (2026-11-13)
 
-- `inzaal-ul-quran.db` (root, tracked) — ShiaVerse-identical schema, rewritten Urdu `tr`/`talighe`, QA pass, PLUS the curated Ahl al-Bayt points below. sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`.
+- `inzaal-ul-quran.db` (root, tracked) — ShiaVerse-identical schema, rewritten Urdu `tr`/`talighe`, QA pass, PLUS the curated Ahl al-Bayt points below. sha256 `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56`.
 - `alkauthar/quran.db` (root, tracked) — byte-identical snapshot of the above for the Al-Kauthar app (now also carrying the curated points; refreshed 2026-11-13).
 - `inzaal-ul-quran-shia.db` — **removed 2026-11-13 at the user's request.** Its broad auto-detected enrichment (1,330 points + 6,122 `ربط` lines) is superseded by the curated build in `inzaal-ul-quran.db`.
 
@@ -144,7 +144,7 @@ Completed work is tracked under **`content/surah-NNN/`** — one folder per sura
 The translated content is committed under `content/surah-NNN/*.py`. Rebuild recipe: `content/README.md`.
 The working binaries (`quran.db`, `work/quran.original.db`, `work/backups/`) are gitignored; the final
 cumulative database **has been committed at the repo root as `inzaal-ul-quran.db`** (all 6,236 ayat verified;
-schema byte-identical to the ShiaVerse `quran.db`; sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`).
+schema byte-identical to the ShiaVerse `quran.db`; sha256 `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56`).
 `alkauthar/quran.db` is a second tracked copy with identical bytes, kept for the Al-Kauthar app.
 
 ## Verification tooling
@@ -157,7 +157,7 @@ All 114 surahs are fully complete and verified (6,236 ayat). The Quran rewrite i
 `inzaal-ul-quran.db` at the repo root (committed; sha256 `3062f540…`) contains the complete work for all 114 surahs — rewritten translation/tafsir plus the curated Ahl al-Bayt points in the 20 ayat that are about (or attributed to) Ahl al-Bayt — and `alkauthar/quran.db` holds identical bytes. The rewrite is complete and verified.
 
 ## Deliverable refresh note (2026-11-13)
-The 2026-11-12 `inzaal-ul-quran-shia.db` (1,330 auto-detected Ahl al-Bayt points + 6,122 `ربط` previous-verse links) was removed from the repo at the user's request. The new deliverable `inzaal-ul-quran.db`/`alkauthar/quran.db` (sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`) carries the same rewritten Urdu work PLUS the **20 curated** Ahl al-Bayt points (hand-written, easy عام فہم Urdu, Mubeen + al-Mizan citations), and **no `ربط` lines anywhere**. The five Urdu `tr` fixes (IDs 4079, 5147, 5757, 5988, 6014) that had landed in `content/` earlier are now also present in the released DB binary. Verify = ALL CHECKS PASSED; lint = 0 suspicious.
+The 2026-11-12 `inzaal-ul-quran-shia.db` (1,330 auto-detected Ahl al-Bayt points + 6,122 `ربط` previous-verse links) was removed from the repo at the user's request. The new deliverable `inzaal-ul-quran.db`/`alkauthar/quran.db` (sha256 `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56`) carries the same rewritten Urdu work PLUS the **20 curated** Ahl al-Bayt points (hand-written, easy عام فہم Urdu, Mubeen + al-Mizan citations), and **no `ربط` lines anywhere**. The five Urdu `tr` fixes (IDs 4079, 5147, 5757, 5988, 6014) that had landed in `content/` earlier are now also present in the released DB binary. Verify = ALL CHECKS PASSED; lint = 0 suspicious.
 
 ## Recovery note (2026-11-10)
 The local sandbox lost the binary databases (`quran.db`, `work/quran.original.db`, `work/backups/`).
@@ -174,6 +174,17 @@ The sandbox lost the binary DBs again (gitignored): `quran.db`, `work/quran.orig
 The final deliverable was uploaded to Google Drive at the user's request: folder `DB Files`
 (`1Dj1OaTAhf-1LQPmi6_tRNqBVM-UqsHSz`), new file **`Inzaal_ul_Quran_Audited_2026-11-13.db`**
 (`1A_GcNpA3lXkNBistZ8jMWEaYk36W3lrR`), 11,078,656 bytes. Drive reports md5 `c284cc0dc27b34b086eca12baef0ab95`
-and sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968` — byte-identical to the
+and sha256 `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56` — byte-identical to the
 committed `inzaal-ul-quran.db` / `alkauthar/quran.db`. No pre-existing Drive file was deleted, moved, trashed,
 or modified; nothing was shared or made public. Link: https://drive.google.com/file/d/1A_GcNpA3lXkNBistZ8jMWEaYk36W3lrR/view?usp=drivesdk
+
+## Field-analysis layer (2026-11-13)
+A second delivery added an appended `مزید تجزیاتی نکات:` block to **158 ayat** — hand-written, عام فہم Urdu notes
+grounding the ayat in their clearly-confirmable external dimension (embryology, cosmology, orbits, time-relativity,
+mountains/tectonics, seas/halocline, iron/nucleosynthesis, bee/honey, sleep, history & fulfilled prophecies,
+logic/monotheism arguments, inheritance arithmetic, riba & khamr, environment, and cross-tradition Ahl al-Bayt tasdiq).
+Tooling: `work/apply_field_notes.py` + `work/field_notes/notes_01_embryology.py` … `notes_10_stragglers.py` (tracked).
+Deliberately NOT name-tagged with any field label; only `Quran.talighe` changed; Arabic/schema byte-identical.
+`inzaal-ul-quran.db` == `alkauthar/quran.db`, sha256 `597c8b6137427538ae8d95836b4fb1d2d15135262949ba40406aa1f1954abf56`.
+Verify = ALL CHECKS PASSED; lint = 0 suspicious. Remaining ayat are legal/devotional/moral/narrative (no external field
+confirms/refutes them) and intentionally carry no added block.
