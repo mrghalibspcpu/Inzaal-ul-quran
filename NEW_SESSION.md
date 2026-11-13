@@ -66,7 +66,7 @@ Repo: `mrghalibspcpu/Inzaal-ul-quran` (already cloned at `/home/user/Inzaal-ul-q
 
 ## Connected apps
 
-- `google_drive`: ON (unused so far — ask the user before use).
+- `google_drive`: ON — used 2026-11-13: final deliverable uploaded to Drive folder `DB Files` (id `1Dj1OaTAhf-1LQPmi6_tRNqBVM-UqsHSz`) as **`Inzaal_ul_Quran_Audited_2026-11-13.db`** (id `1A_GcNpA3lXkNBistZ8jMWEaYk36W3lrR`, 11,078,656 bytes; Drive md5 `c284cc0dc27b34b086eca12baef0ab95` and sha256 match the local/committed DB). Nothing on Drive was deleted, moved, or overwritten — a new file was created alongside existing items. The pre-existing `quran.db` in the zip folder (17,904,640 bytes, a different file) was left untouched.
 - `gmail`: connected but OFF — the user must turn it on before any Gmail action. Never ask for credentials; use the connector only.
 
 ## User's standing directives

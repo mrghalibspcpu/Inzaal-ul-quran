@@ -169,3 +169,11 @@ Fresh checkpoints exist again under `work/backups/` (e.g. `quran.after-surah-019
 
 ## Recovery note (2026-11-10, second occurrence)
 The sandbox lost the binary DBs again (gitignored): `quran.db`, `work/quran.original.db`, `work/backups/` were 0-byte/missing and local git was reset to the base commit. The remote branch `origin/arena/d4219406-inzaal-ul-quran` (tip d616c73) had every commit, and the committed `content/` tree was byte-identical to the lost working tree. The pristine ShiaVerse DB was re-fetched from upstream (`mrghalibspcpu/ShiaVerse` → `assets/quran.db`, blob `b7f13f1...`, 16,943,104 bytes, integrity ok), `quran.db` was rebuilt by replaying all committed part files, and `work/verify.py` reports ALL CHECKS PASSED (2,972 ayat; surah 26 at v40).
+
+## Drive delivery note (2026-11-13)
+The final deliverable was uploaded to Google Drive at the user's request: folder `DB Files`
+(`1Dj1OaTAhf-1LQPmi6_tRNqBVM-UqsHSz`), new file **`Inzaal_ul_Quran_Audited_2026-11-13.db`**
+(`1A_GcNpA3lXkNBistZ8jMWEaYk36W3lrR`), 11,078,656 bytes. Drive reports md5 `c284cc0dc27b34b086eca12baef0ab95`
+and sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968` — byte-identical to the
+committed `inzaal-ul-quran.db` / `alkauthar/quran.db`. No pre-existing Drive file was deleted, moved, trashed,
+or modified; nothing was shared or made public. Link: https://drive.google.com/file/d/1A_GcNpA3lXkNBistZ8jMWEaYk36W3lrR/view?usp=drivesdk
