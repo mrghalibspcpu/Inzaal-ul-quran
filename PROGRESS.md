@@ -4,16 +4,19 @@ Deliverable: `quran.db` (ShiaVerse Android app) — modified copy of the origina
 Only `tr` (Urdu translation) and `talighe` (Urdu tafsir notes) are changed. All Arabic text, IDs,
 chapter/verse numbers, juz/hizb/page, indexes and ChapterProperty metadata are byte-identical to the original.
 
-## Deliverables (2026-11-12)
+## Deliverables (2026-11-13)
 
-- `inzaal-ul-quran.db` (root, tracked) — ShiaVerse-identical schema, rewritten Urdu `tr`/`talighe`, QA pass committed as `eb1f2ee`. sha256 `3277241b844bcc33d4e84544f9121839a3723209b411bc04613471d90441c112`.
-- `alkauthar/quran.db` (root, tracked) — byte-identical snapshot of the above for the Al-Kauthar app.
-- `inzaal-ul-quran-shia.db` (root, tracked) — NEW Shia-enriched DB (same base + enrichment appended to `talighe`):
-  - **1,330 ayat** carry an `اہلِ بیتؑ کا نکتہ` — Ahl al-Bayt points sourced from BOTH Tafsir-e-Mubeen (Dr Hassan Rizvi, pristine `work/quran.original.db`) and Tafsir al-Mizan (Arabic, passage per ayah; `app-furqan/quran-app-data`, CC BY-ND 4.0 — reference/attribution only). Al-Kauthar could not be fetched from this sandbox (APK hosts blocked) — 2-of-3 rule ran as 2-of-2 for now; Al-Kauthar can be folded in later.
-  - **6,122 / 6,122 non-surah-first ayat** (all except the 114 surah-opening ayat) carry a `ربط` line linking them to the previous ayah (6,120 generated + IDs 12, 27 hand-written by the rewrite).
-  - Verify = ALL CHECKS PASSED (Arabic/schema/metadata byte-identical); lint = 0 suspicious; quote balance 20,178/20,178; 0 invisible chars in added text.
-  - sha256 `1ca5dfa6bd17d5cb4ce905e56b8a59578dfd4ff06136bb4e494805ac1dbd41ee`.
-  - Rebuild recipe: rebuild `quran.db` (pristine + `content/**`) → `cp quran.db inzaal-ul-quran-shia.db` → `python3 work/enrich_shia.py inzaal-ul-quran-shia.db`.
+- `inzaal-ul-quran.db` (root, tracked) — ShiaVerse-identical schema, rewritten Urdu `tr`/`talighe`, QA pass, PLUS the curated Ahl al-Bayt points below. sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`.
+- `alkauthar/quran.db` (root, tracked) — byte-identical snapshot of the above for the Al-Kauthar app (now also carrying the curated points; refreshed 2026-11-13).
+- `inzaal-ul-quran-shia.db` — **removed 2026-11-13 at the user's request.** Its broad auto-detected enrichment (1,330 points + 6,122 `ربط` lines) is superseded by the curated build in `inzaal-ul-quran.db`.
+
+The current deliverable contains:
+
+- `اہلِ بیتؑ کا نکتہ` for **20 ayat only** — exclusively the ayat that are themselves about Ahl al-Bayt or traditionally attributed to them (2:124, 3:33, 3:61, 3:103, 4:59, 5:3, 5:55, 5:67, 8:41, 9:100, 24:55, 33:33, 33:56, 42:23, 56:10, 59:7, 76:1, 76:7, 76:8, 108:1). Each point is hand-written in easy, عام فہم Urdu and cites BOTH Tafsir-e-Mubeen (Dr Hassan Rizvi) and Tafsir al-Mizan (Arabic; `app-furqan/quran-app-data`, CC BY-ND 4.0 — reference/attribution only). Al-Kauthar (`تفسیر الکوثر`) could not be fetched (APK hosts blocked) — 2-of-2.
+- **No `ربط` (previous-verse link) lines anywhere** — removed completely per the user's directive of 2026-11-12 (IDs 12 and 27 included).
+- The five Urdu `tr` fixes (IDs 4079, 5147, 5757, 5988, 6014) are now actually present in the released DB (they were in `content/` but missing from the previously committed binary).
+- Verify = ALL CHECKS PASSED (Arabic/schema/metadata byte-identical); lint = 0 suspicious; quote balance 7,983/7,983; 0 invisible chars; integrity ok; 6,236 rows.
+- Rebuild recipe: rebuild `quran.db` (pristine + `content/**`) → `cp quran.db inzaal-ul-quran.db` → `python3 work/enrich_shia.py inzaal-ul-quran.db` → `cp inzaal-ul-quran.db alkauthar/quran.db`.
 
 ## Completed surahs (verified)
 - **Surah 1 — Al-Fatiha (7/7 ayat)** ✔ complete
@@ -141,7 +144,7 @@ Completed work is tracked under **`content/surah-NNN/`** — one folder per sura
 The translated content is committed under `content/surah-NNN/*.py`. Rebuild recipe: `content/README.md`.
 The working binaries (`quran.db`, `work/quran.original.db`, `work/backups/`) are gitignored; the final
 cumulative database **has been committed at the repo root as `inzaal-ul-quran.db`** (all 6,236 ayat verified;
-schema byte-identical to the ShiaVerse `quran.db`; sha256 `066359e9c77a9e74a2f724afb7b780e42986527448f5947c80f18ccd9a1d5069`).
+schema byte-identical to the ShiaVerse `quran.db`; sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`).
 `alkauthar/quran.db` is a second tracked copy with identical bytes, kept for the Al-Kauthar app.
 
 ## Verification tooling
@@ -151,7 +154,10 @@ schema byte-identical to the ShiaVerse `quran.db`; sha256 `066359e9c77a9e74a2f72
 
 ## Honest status
 All 114 surahs are fully complete and verified (6,236 ayat). The Quran rewrite is finished.
-`inzaal-ul-quran.db` at the repo root (committed; sha256 `066359e9…`) contains the complete work for all 114 surahs, as does `alkauthar/quran.db` with identical bytes. Commit `1ed5954` applied surah 114; commit at delivery added `inzaal-ul-quran.db`. The rewrite is complete and verified.
+`inzaal-ul-quran.db` at the repo root (committed; sha256 `3062f540…`) contains the complete work for all 114 surahs — rewritten translation/tafsir plus the curated Ahl al-Bayt points in the 20 ayat that are about (or attributed to) Ahl al-Bayt — and `alkauthar/quran.db` holds identical bytes. The rewrite is complete and verified.
+
+## Deliverable refresh note (2026-11-13)
+The 2026-11-12 `inzaal-ul-quran-shia.db` (1,330 auto-detected Ahl al-Bayt points + 6,122 `ربط` previous-verse links) was removed from the repo at the user's request. The new deliverable `inzaal-ul-quran.db`/`alkauthar/quran.db` (sha256 `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`) carries the same rewritten Urdu work PLUS the **20 curated** Ahl al-Bayt points (hand-written, easy عام فہم Urdu, Mubeen + al-Mizan citations), and **no `ربط` lines anywhere**. The five Urdu `tr` fixes (IDs 4079, 5147, 5757, 5988, 6014) that had landed in `content/` earlier are now also present in the released DB binary. Verify = ALL CHECKS PASSED; lint = 0 suspicious.
 
 ## Recovery note (2026-11-10)
 The local sandbox lost the binary databases (`quran.db`, `work/quran.original.db`, `work/backups/`).

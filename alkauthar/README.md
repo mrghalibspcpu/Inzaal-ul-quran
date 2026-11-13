@@ -15,20 +15,15 @@ Everything else — Arabic text, IDs, chapter/verse numbers, juz/hizb/page, inde
 
 ## Snapshot status
 
-- Refreshed: 2026-11-12 (Urdu translation & tafsir QA commit `eb1f2ee`) — **the Quran rewrite and QA pass are COMPLETE**.
+- Refreshed: 2026-11-13 — now carrying the rewritten Urdu work **plus the curated Ahl al-Bayt points** (this snapshot is no longer the non-enriched one).
 - Progress at snapshot: **6,236 / 6,236 ayat** rewritten (all 114 chapters fully translated & verified).
-- sha256: `3277241b844bcc33d4e84544f9121839a3723209b411bc04613471d90441c112`
-- Size: ~11 MiB (11,062,272 bytes).
-- Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order.
+- sha256: `0d8f0fe6eb4eb2d2f66ffaa366eb5fa6bd888e92f2bb3c3cd6810a394f979968`
+- Size: ~11 MB (11,078,656 bytes).
+- Integrity: `pragma integrity_check` = ok; 6,236 rows; IDs 1..6236 in order. Contains `اہلِ بیتؑ کا نکتہ` in **20 ayat only** (the ayat about/attributed to Ahl al-Bayt), and **no `ربط` lines anywhere**.
 
 ## Note on `inzaal-ul-quran-shia.db`
 
-A separate, Shia-enriched database is committed at the repository root as **`inzaal-ul-quran-shia.db`** (2026-11-12, sha256 `1ca5dfa6bd17d5cb4ce905e56b8a59578dfd4ff06136bb4e494805ac1dbd41ee`). It is the same base as this file PLUS, appended to every `talighe`:
-
-- `اہلِ بیتؑ کا نکتہ` for **1,330 ayat** where BOTH Tafsir-e-Mubeen (Dr Hassan Rizvi, pristine ShiaVerse DB) and Tafsir al-Mizan (Arabic; CC BY-ND 4.0, used for reference/attribution) mention Ahl al-Bayt material.
-- `ربط` (previous-verse link) for **6,122 ayat** — every ayah except each surah's first.
-
-This `alkauthar/quran.db` snapshot intentionally remains the QA-refreshed non-enriched deliverable; copy root `inzaal-ul-quran-shia.db` instead if you want the Shia-enriched edition.
+The separate, Shia-enriched `inzaal-ul-quran-shia.db` (2026-11-12) was **removed from the repository root at the user's request on 2026-11-13**. Its contents are superseded by the curated build: the root `inzaal-ul-quran.db` and this snapshot now carry hand-written, easy عام فہم Urdu Ahl al-Bayt points for the 20 ayat about (or attributed to) Ahl al-Bayt — sourced from BOTH Tafsir-e-Mubeen and Tafsir al-Mizan — and contain **no previous-verse `ربط` sections** anywhere.
 
 This snapshot is refreshed at every surah completion (`cp quran.db alkauthar/quran.db` + commit). Check `git log -- alkauthar/` for the latest refresh, and `work/progress.json` for authoritative per-ayah state.
 
@@ -44,4 +39,7 @@ The canonical source of truth for the Urdu work is `content/**/content_s*.py` (t
 2. Place it as both `work/quran.original.db` and `quran.db`.
 3. Replay all content modules: `find content -name '*.py' | sort | while read f; do python3 work/apply_surah.py "$f"; done`
 4. `python3 work/lint.py && python3 work/verify.py`
-5. `cp quran.db alkauthar/quran.db`
+5. `cp quran.db inzaal-ul-quran.db` (or a chosen deliverable path)
+6. `python3 work/enrich_shia.py inzaal-ul-quran.db` — appends the 20 curated `اہلِ بیتؑ کا نکتہ` lines only (idempotent)
+7. `cp inzaal-ul-quran.db alkauthar/quran.db` (this file, byte-identical)
+8. Re-check: `python3 work/lint.py alkauthar/quran.db && python3 work/verify.py alkauthar/quran.db`

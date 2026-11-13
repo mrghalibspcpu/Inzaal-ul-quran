@@ -1,175 +1,91 @@
 #!/usr/bin/env python3
 """
-Enrich the Shia deliverable (default: inzaal-ul-quran-shia.db) with:
-  1. اہلِ بیتؑ کا نکتہ — for every ayah whose Tafsir-e-Mubeen (pristine Urdu talighe)
-     AND Tafsir al-Mizan (Arabic passage for that ayah) both mention Ahl al-Bayt
-     material (script-normalized matching). The point cites BOTH sources.
-  2. ربط — for every ayah except each surah's first ayah, a short, easy,
-     accurate link to the previous ayah (based on both ayat's Urdu translations).
-Only Quran.talighe is changed. Idempotent: existing markers are not duplicated.
+Enrich the deliverable quran.db with "اہلِ بیتؑ کا نکتہ" — ONLY for the ayat that
+are themselves about Ahl al-Bayt or traditionally attributed to them:
+
+  2:124   (131)  امامتِ ابراہیمؑ — الٰہی عہدِ امامت کا سلسلہ
+  3:33    (326)  اصطفائِ آدم و نوح و آلِ ابراہیم و آلِ عمران
+  3:61    (354)  آیتِ مباہلہ
+  3:103   (396)  حبلِ اللہ = آلِ محمدؐ (بروایتِ امام باقرؑ)
+  4:59    (552)  اولی الامر (بروایتِ ائمہؑ)
+  5:3     (672)  اکمالِ دین — ولایتِ علیؑ (غدیرِ خم)
+  5:55    (724)  وَيُؤْتُونَ الزَّكَاةَ وَهُمْ رَاكِعُونَ (نزول فی علیؑ)
+  5:67    (736)  يٰۤاَيُّهَا الرَّسُوْلُ بَلِّغْ (ولایتِ علیؑ — غدیرِ خم)
+  8:41    (1201) خمس — لِذِي الْقُرْبَىٰ
+  9:100   (1335) وَالسَّابِقُونَ الْاَوَّلُونَ (نزول فی علیؑ)
+  24:55   (2846) لَيَسْتَخْلِفَنَّهُمْ فِي الْاَرْضِ (وعدۂ خلافت — اہلِ بیتؑ / مہدیؑ)
+  33:33   (3566) آیتِ تطہیر
+  33:56   (3589) صلوٰۃ علیٰ نبیٍّ و آلِہٖ
+  42:23   (4295) قُلْ لَا أَسْأَلُكُمْ عَلَيْهِ أَجْرًا إِلَّا الْمَوَدَّةَ فِي الْقُرْبَىٰ
+  56:10   (4989) وَالسَّابِقُونَ السَّابِقُونَ (نزول فی علیؑ)
+  59:7    (5133) مالِ فیء میں لِذِي الْقُرْبَىٰ (قرابة النبی)
+  76:1    (5592) سورۂ ہل اتیٰ — نزول فی اہلِ بیتِ رسولؐ
+  76:7    (5598) سورۂ ہل اتیٰ — يُوفُونَ بِالنَّذْرِ (نزول فی اہلِ بیتِ رسولؐ)
+  76:8    (5599) سورۂ ہل اتیٰ — وَيُطْعِمُونَ الطَّعَامَ (نزول فی علیؑ و فاطمہؑ)
+  108:1   (6205) سورۂ کوثر — نسلِ فاطمہؑ ہی ذریتِ رسولؐ
+
+No other ayat get points. NO previous-verse links anywhere (user directive, 2026-11-12).
+Each point is hand-written in easy, عام فہم Urdu and cites تفسیرِ مبین (Mubeen) and
+تفسیر المیزان (Tabatabai).
+
+Only Quran.talighe is changed. Idempotent: rows already carrying
+"اہلِ بیتؑ کا نکتہ" are left untouched.
 Usage: python3 work/enrich_shia.py [db]
 """
-import sqlite3, re, json, sys
+import sqlite3, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DB = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'inzaal-ul-quran-shia.db'
-ORIG = ROOT / 'work' / 'quran.original.db'
-MIZ = '/tmp/almizan/extract/tafsir_almizan_ar.db'
-if not Path(MIZ).exists():
-    sys.exit('al-Mizan source not found at /tmp/almizan/extract/tafsir_almizan_ar.db — see NEW_SESSION.md to re-fetch')
+DB = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'inzaal-ul-quran.db'
 
 EASTERN = '۰۱۲۳۴۵۶۷۸۹'
 def to_eastern(n):
     return ''.join(EASTERN[int(d)] for d in str(n))
 
-BOOK_CIT = re.compile(r'نور\s*الثقلین|نورالثقلین')
-HARAKAT = re.compile(r'[\u064b-\u0652\u0670\u0640\u06d6-\u06ed\u0600-\u0605\u0610-\u061a\u0640]')
-def norm(t):
-    if not t: return ''
-    t = BOOK_CIT.sub(' ', t)
-    t = HARAKAT.sub('', t)
-    t = t.replace('\u200c','').replace('\u200d','')
-    for a,b in {'ي':'ی','ى':'ی','ة':'ہ','ؤ':'و','ك':'ک','ٱ':'ا','أ':'ا','إ':'ا','آ':'ا','ٲ':'ا','ٳ':'ا','ۀ':'ہ','ئ':'ی','ء':''}.items():
-        t = t.replace(a,b)
-    t = re.sub(r'[^\u0600-\u06FFa-zA-Z0-9 ]+',' ', t)
-    return re.sub(r'\s+',' ', t).strip()
 
-SIG_PRIO = [
- ('ahl_bayt',  re.compile(r'اهل\s*ال?بیت|اھل\s*بیت|آل\s*النبی|آل\s*نبی')),
- ('thaqalayn', re.compile(r'ثقلین')),
- ('itrah',     re.compile(r'عتر[تہہ]')),
- ('ghadir',    re.compile(r'غدیر')),
- ('aal_moh',   re.compile(r'آل\s*محمد')),
- ('a_immah',   re.compile(r'ائم[ہ]')),
- ('ulu_alamr', re.compile(r'اولوا الامر|اولی الامر')),
- ('wilayah',   re.compile(r'ولای[تہ]')),
- ('fatima',    re.compile(r'فاطم[ہ]')),
- ('imams',     re.compile(r'باقر|صادق\b|کاظم|عسکری|عسكري|عسكر|رضا|مہدی|موسى بن جعفر|موسی بن جعفر|جعفر بن محمد|علي بن أبي طالب|علی بن ابی طالب|حسن بن علی|حسین بن علی|حسن بن علي|حسين بن علي')),
-]
+AHL_BAYT_POINTS = {
+131: "اہلِ بیتؑ کا نکتہ: اللہ نے ابراہیمؑ کو فرمایا: ’’جاعلك للناس إماما‘‘ — یعنی امامت سرے سے اللہ کا عطیہ ہے، نہ کسی کے انتخاب سے ملتی ہے، نہ کسی کی مرضی سے۔ میزان کے مطابق امامت ایک الٰہی عہدہ ہے جو نبوت سے بھی بلند ہے اور صرف معصوم کو ملتا ہے؛ اور اسی عہدِ امامت کو میزان نے ’’بإمامة محمد ، والأئمة من أهل بيته‘‘ میں مکمل ہوتے دیکھا۔ مبین کے مطابق امامت سب سے بلند عہدہ ہے اور خدا ہی اس کا مالک ہے۔",
 
-def best_signal(ntext):
-    """Return (priority_index, match) for the strongest signal present, else None."""
-    for i,(name,p) in enumerate(SIG_PRIO):
-        m = p.search(ntext)
-        if m: return i, m
-    return None, None
+326: "اہلِ بیتؑ کا نکتہ: اللہ نے آدمؑ اور نوحؑ کے ساتھ آلِ ابراہیمؑ و آلِ عمرانؑ کو چن لیا۔ میزان کے مطابق یہ برگزیدگی کسی فرد کی خواہش کا نتیجہ نہیں بلکہ اللہ کی ذاتی عطاء ہے، اور یہ انتخاب ’’ذرية بعضها من بعض‘‘ کی وجہ سے ایک دوسرے تک پہنچا۔ مبین میں امام محمد باقرؑ سے روایت ہے: ’’ہم آلِ ابراہیمؑ میں سے ہیں اور نسلِ طاہر کے باقی رہنے والے افراد ہیں‘‘ — یہی وہ مبارک سلسلہ ہے جو رسولِ اکرمؐ اور اہلِ بیتِ رسولؐ کی صورت میں ہمارے سامنے آیا۔",
 
-MD_JUNK = re.compile(r'^#.*$|^\*+.*\*+$|^\s*\*\s*\*\s*\*\s*$|^```.*$|^_+.*$', re.M)
-CTRL = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\ufeff\u200b\u200c\u200d\u0640]')
-SURAH_HDR = re.compile(r'سور[ةه]\s')
-AYA_RE = re.compile(r'[\u0600-\u0605]')
+354: "اہلِ بیتؑ کا نکتہ: مباہلے کے لیے رسولؐ اپنے ساتھ صرف چار بزرگ ہستیاں لے کر آئے — حضرت علیؑ، فاطمہؑ اور امام حسنؑ و حسینؑ۔ مبین کے مطابق عیسائی راہب یہ چہرے دیکھ کر کہہ اٹھے: ان سے مباہلہ نہ کرو؛ اور محققین نے نتیجہ نکالا کہ حسنؑ و حسینؑ رسولؐ کے بیٹے ہیں اور علیؑ ’’انفسنا‘‘ ہیں۔ میزان کے الفاظ میں: تفسیر، روایات اور تاریخ سب اس پر متفق ہیں کہ رسولؐ مباہلے میں صرف انہی حضرات کو لے کر تشریف لائے — یہ اہلِ بیتِ رسولؐ کی سب سے واضح فضیلت کا مظاہرہ تھا۔",
 
-TOPIC = {
- 'ahl_bayt':'اہلِ بیتِ رسولؐ کی فضیلت و منزلت',
- 'thaqalayn':'حدیثِ ثقلین — تمسک بالقرآن و عترت',
- 'itrah':'اہلِ بیتؑ کی عترت سے مضبوط تعلق',
- 'ghadir':'غدیرِ خم — ولایتِ امام علیؑ کا اعلان',
- 'aal_moh':'آلِ محمدؐ کی فضیلت اور اُن سے محبت',
- 'a_immah':'ائمہ اہلِ بیتؑ کی امامت و قیادت',
- 'ulu_alamr':'اولی الامر کی آیت — ائمہ اہلِ بیتؑ کی امامت',
- 'wilayah':'ولایتِ اہلِ بیتؑ کی فضیلت',
- 'fatima':'سیدہ فاطمہ زہراؑ کی منزلت و فضیلت',
- 'imams':'ائمہ اہلِ بیتؑ کی تعلیمات و سیرت',
+396: "اہلِ بیتؑ کا نکتہ: اللہ نے ’’واعتصموا بحبل اللّٰه‘‘ کا حکم دیا۔ مبین میں نقل ہے کہ رسولؐ نے فرمایا: میں تم میں دو چیزیں چھوڑ رہا ہوں — اللہ کی کتاب اور اپنی عترت و اہلِ بیتؑ؛ اور امام محمد باقرؑ نے فرمایا: ’’آلِ محمدؐ ہی حبلِ اللہ ہیں جن کے ساتھ جڑنے کا حکم دیا گیا‘‘۔ میزان میں بھی یہی روایت نقل ہے — یعنی قرآن اور اہلِ بیتؑ کو ایک ساتھ تھامنے والا ہی اصل میں حبلِ اللہ پر قائم ہے۔",
+
+552: "اہلِ بیتؑ کا نکتہ: اللہ نے اپنی اور اپنے رسولؐ کی اطاعت کے ساتھ ’’اولی الامر‘‘ کی اطاعت بھی بےشرط فرض کی ہے — میزان کے مطابق یہ بےشرط اطاعت اس بات کی دلیل ہے کہ اولی الامر وہی ہو سکتے ہیں جو معصوم ہوں۔ مبین میں امام محمد باقرؑ سے روایت ہے: ’’اس آیت میں اولی الامر سے خاص طور پر ہم — یعنی ائمہ — مراد لیے گئے ہیں‘‘، اور امام جعفر صادقؑ نے فرمایا کہ یہ آیت علیؑ، حسنؑ اور حسینؑ کے بارے میں نازل ہوئی۔",
+
+672: "اہلِ بیتؑ کا نکتہ: ’’اَلْيَوْمَ اَكْمَلْتُ لَكُمْ دِيْنَكُمْ‘‘ — مبین کے مطابق یہ آیت حجة الوداع کے عرفہ کے دن نازل ہوئی، اور اسی کے ساتھ غدیرِ خم میں علیؑ کی ولایت کا اعلان ہوا۔ میزان نے بھی لکھا ہے کہ کئی روایات کے مطابق یہ آیت اُس دن نازل ہوئی جب ولایت کا فریضہ مکمل ہو گیا — یعنی دین کی تکمیل کا مطلب اہلِ بیتِ رسولؐ کی راہنمائی کو اپنانا ہی ہے۔",
+
+724: "اہلِ بیتؑ کا نکتہ: رسولؐ کے سامنے ایک سائل آیا؛ اس وقت حضرت علیؑ رکوع میں تھے اور انہوں نے رکوع ہی میں اپنی انگوٹھی خیرات کر دی۔ مبین کے مطابق یہی وہ واقعہ ہے جس پر ’’وَيُؤْتُونَ الزَّكَاةَ وَهُمْ رَاكِعُونَ‘‘ نازل ہوئی؛ میزان نے بھی تفصیل سے نقل کیا ہے کہ یہ آیت حضرت علیؑ کے بارے میں نازل ہوئی — یعنی رکوع میں خیرات دینے والے علیؑ ہی ہیں۔",
+
+736: "اہلِ بیتؑ کا نکتہ: ’’يٰۤاَيُّهَا الرَّسُوْلُ بَلِّغْ مَا اُنْزِلَ اِلَيْكَ مِنْ رَّبِّكَ‘‘ — میزان کے مطابق یہ آیت حضرت علیؑ کی ولایت کے اعلان کے بارے میں نازل ہوئی: جو ولایت آپؐ تک پہنچی ہے وہ پہنچا دو؛ اور اگر نہ پہنچائی تو رسالت کا فریضہ ادا نہ ہوا۔ مبین کے مطابق آپؐ نے غدیرِ خم میں اعلان فرمایا: ’’جس کا میں مولا ہوں، یہ علیؑ بھی اُس کے مولا ہیں‘‘ — یہ علیؑ کی امامت کا وہ اعلان تھا جس کو قرآن نے لازم قرار دیا۔",
+
+1201: "اہلِ بیتؑ کا نکتہ: ’’فَاَنَّ لِلّٰهِ خُمُسَهُ‘‘ — غنیمت کے پانچ حصوں میں سے ایک حصہ ’’لِذِي الْقُرْبَىٰ‘‘ کا مقرر ہوا۔ مبین میں جلالین کے حوالے سے لکھا ہے کہ اس قربیت سے مراد نبیؐ کے قرابتدار ہیں (’’قرابۃ النبی من بنی ہاشم والمطلب‘‘) — ہمارے اپنے قرابتدار نہیں۔ میزان کے مطابق بھی اس سے مراد ’’قرابة النبی‘‘ ہیں — عام مسلمانوں کے رشتہ دار مراد نہیں۔ یہ خمس کا پانچواں حصہ اہلِ بیتِ رسولؐ کا مقرر کردہ قرآنی حق ہے — صدقہ نہیں، خود اللہ کا مختص کردہ حصہ۔",
+
+1335: "اہلِ بیتؑ کا نکتہ: ’’وَالسَّابِقُونَ الْاَوَّلُونَ مِنَ الْمُهَاجِرِينَ وَالْاَنْصَارِ‘‘ — میزان نے برہان کے حوالے سے ابنِ عباسؓ کی روایت نقل کی ہے کہ یہ آیت حضرت علیؑ کے بارے میں نازل ہوئی، کیونکہ وہ سب سے پہلے ایمان لائے۔ مبین کے مطابق بھی اسلام میں سبقت کے سب سے بڑے مصداق حضرت علیؑ ہیں — اہلِ بیتِ رسولؐ میں سے سب سے پہلے ایمان والا شخص۔",
+
+2846: "اہلِ بیتؑ کا نکتہ: ’’لَيَسْتَخْلِفَنَّهُمْ فِي الْاَرْضِ‘‘ — میزان میں امام زین العابدینؑ سے نقل شدہ روایت ہے: ’’یہ آیت ہم — اہلِ بیتؑ کے شیعوں — کے بارے میں ہے، اور یہ وعدہ ہمارے ایک فرد (مہدیؑ) کے ہاتھوں پورا ہوگا‘‘۔ مبین کے مطابق بھی یہ آیت حضرت امام مہدیؑ کے بارے میں ہے — جو اہلِ بیتِ رسولؐ سے ہوں گے اور زمین کو عدل و قسط سے بھر دیں گے۔",
+
+3566: "اہلِ بیتؑ کا نکتہ: ’’اِنَّمَا يُرِيْدُ اللّٰهُ لِيُذْهِبَ عَنْكُمُ الرِّجْسَ اَهْلَ الْبَيْتِ وَيُطَهِّرَكُمْ تَطْهِيْرًا‘‘ — یہ آیتِ تطہیر قرآن کا وہ ارشاد ہے جس میں اللہ نے اہلِ بیتِ رسولؐ کی عصمت و طہارت کا اعلان فرمایا۔ مبین کے مطابق رسولؐ نے علیؑ، فاطمہؑ، حسنؑ اور حسینؑ کو اپنی چادر میں ڈھک کر دعا فرمائی: ’’یہ میرے اہلِ بیتِ رسولؐ ہیں‘‘؛ میزان کے مطابق یہ آیت خاص انہی حضرات کے بارے میں نازل ہوئی، اور امِ سلمہؓ سمیت کثیر صحیح روایات اس پر متفق ہیں۔",
+
+3589: "اہلِ بیتؑ کا نکتہ: ’’اِنَّ اللّٰهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ‘‘ — اللہ اور فرشتے نبیؐ پر درود بھیجتے ہیں، اور مومنوں کو بھی حکم دیا گیا کہ آپؐ پر صلوٰۃ و سلام بھیجو۔ رسولؐ نے درود کا طریقہ یہ بتایا: ’’اللهم صل على محمد وآل محمد‘‘ — یعنی نبیؐ پر درود ہمیشہ ’’آلِ محمدؐ‘‘ کے ساتھ مکمل ہوتا ہے۔ مبین کے مطابق نمازِ تشہد میں محمدؐ و آلِ محمدؐ پر درود پڑھنا واجب ہے؛ میزان نے بھی حضرت علیؑ کی روایت نقل کی: ’’محمدؐ و آلِ محمدؐ پر صلوٰۃ پڑھو، اللہ تمہاری دعائیں قبول فرمائے گا‘‘۔",
+
+4295: "اہلِ بیتؑ کا نکتہ: رسولؐ نے اعلان فرمایا کہ میں اپنی رسالت پر تم سے کوئی اجر نہیں مانگتا مگر صرف ’’الْمَوَدَّةَ فِي الْقُرْبَىٰ‘‘۔ مبین میں امام محمد باقرؑ سے روایت نقل ہے: ’’یہ آیت خاص طور پر ہم اہلِ بیتِ رسولؐ — اصحابِ کساء علیؑ، فاطمہؑ، حسنؑ و حسینؑ — کے بارے میں نازل ہوئی‘‘، اور ابنِ عباسؓ و سدی نے ’’حسنہ‘‘ (نیکی) کا پہلا مصداق آلِ محمدؐ کی مودّت قرار دیا ہے۔ میزان کے مطابق یہ مودّت اصل دعوت کی قبولیت کا ضروری جزو ہے — نبیؐ کی پیروی اس کے بغیر ادھوری ہے۔",
+
+4989: "اہلِ بیتؑ کا نکتہ: ’’وَالسَّابِقُونَ السَّابِقُونَ اُولٰٓئِكَ الْمُقَرَّبُونَ‘‘ — میزان میں ابنِ مردویہ کے حوالے سے ابنِ عباسؓ کی روایت نقل ہے: ’’حزقیل، حبیب نجار اور علیؑ — ہر ایک اپنی امت میں سب سے پہلے ایمان لایا، اور ان میں سب سے افضل علیؑ ہیں‘‘۔ مبین میں بھی برہان کی روایت درج ہے کہ سابقون سے مراد حضرت علیؑ اور ان کے شیعہ ہیں۔",
+
+5133: "اہلِ بیتؑ کا نکتہ: مالِ فیء کے حصے میں ’’لِذِي الْقُرْبَىٰ‘‘ بھی مقرر ہوا — یعنی رسولؐ کے قریبوں کا۔ میزان میں صاف فرمایا کہ اس سے مراد ’’قرابة النبی‘‘ ہے، عام مسلمانوں کے رشتہ دار ہرگز نہیں؛ اور اہلِ بیتِ رسولؐ کے فرامین موجود ہیں کہ اس کا مصداق اہلِ بیتؑ ہیں — ان میں سے یتیم، مسکین اور ابنِ السبیل بھی انہی کے شاملِ حال ہوں گے۔ مبین میں اسی بنیاد پر فدک کا باغ رسولؐ کے اپنی دختر فاطمہؑ کو عطا فرمانے کا ذکر موجود ہے۔",
+
+5592: "اہلِ بیتؑ کا نکتہ: سورۂ ہل اتیٰ کا نزول — مبین کے مطابق اس سورۃ کی روایات حضرت علیؑ، فاطمہؑ، حسنؑ و حسینؑ اور فضہ کے بارے میں منقول ہیں؛ میزان نے بھی لکھا کہ اس کا تعلق اہلِ بیتِ رسولؐ سے ہے — یہ پوری سورت اہلِ بیتِ رسولؐ کے عزم اور ایثار کی داستان ہے۔",
+
+5598: "اہلِ بیتؑ کا نکتہ: ’’يُوفُونَ بِالنَّذْرِ وَيَخَافُونَ يَوْمًا كَانَ شَرُّهُ مُسْتَطِيرًا‘‘ — میزان نے امالیِ صدوق کے حوالے سے امام جعفر صادقؑ سے نقل کیا کہ ’’يُوفُونَ بِالنَّذْرِ‘‘ سے مراد علیؑ، فاطمہؑ، حسنؑ، حسینؑ اور ان کی جاریہ ہیں — یعنی وہ پانچ وہی ہیں جنہوں نے حسنینؑ کی شفایابی کی نذر مانی اور تین دن مسلسل روزے رکھے۔ مبین میں بھی اسی واقعے کی پوری تفصیل موجود ہے۔",
+
+5599: "اہلِ بیتؑ کا نکتہ: ’’وَيُطْعِمُونَ الطَّعَامَ عَلَىٰ حُبِّهِ مِسْكِينًا وَيَتِيمًا وَأَسِيرًا‘‘ — میزان نے ابنِ مردویہ کے حوالے سے ابنِ عباسؓ کی روایت نقل کی ہے کہ یہ آیت حضرت علیؑ اور فاطمہؑ بنتِ رسولؐ کے بارے میں نازل ہوئی۔ مبین نے پوری داستان درج کی ہے: حسنینؑ بیمار ہوئے، گھر میں کھانے کو کچھ نہ تھا، نذر مانی، اور مسلسل تین دن افطار کی روٹیاں سائل، یتیم اور اسیر کو دے دیں — یہ اہلِ بیتِ رسولؐ کا وہ ایثار ہے جس کی مثال پوری تاریخ میں نہیں ملتی۔",
+
+6205: "اہلِ بیتؑ کا نکتہ: ’’اِنَّا اَعْطَيْنَاكَ الْكَوْثَرَ‘‘ — مبین کے مطابق یہ سورت مکہ کے مشرک سردار عاص بن وائل کے اس طعنے کے جواب میں نازل ہوئی کہ تمہاری نسل ختم ہو چکی ہے؛ اللہ نے فرمایا کہ میں نے تجھے الکوثر (کثیر نسل اور خیرِ کثیر) دیا ہے۔ میزان نے صریح الفاظ میں لکھا: یہ آیت اس بات پر دلالت کرتی ہے کہ فاطمہؑ کی اولاد ہی رسولؐ کی اصل ذریتِ ہے — اور آج بھی لاکھوں سادات دنیا میں اسی نسل کی تابندگی کے ثبوت ہیں۔",
 }
 
-def clean_excerpt(raw, cap, salt=0):
-    """Pick the best signal-bearing sentence (priority first, then shortest, with
-    intra-tier rotation by `salt` so ayat sharing a passage get different quotes)."""
-    if not raw: return None
-    t = MD_JUNK.sub(' ', raw)
-    t = CTRL.sub('', t).replace('\t', ' ').replace('\xa0', ' ')
-    # drop parenthesized source citations like (تفسیر نورالثقلین جلد ۵ ص ۸۵) — no tafsir content
-    for _ in range(2):
-        t = re.sub(r'\([^()]{0,160}\)', ' ', t)
-    # neutralize quotation marks (balance + readability)
-    for q in ['’’','‘‘','«','»','“','”','‘','’','\"',"'"]:
-        t = t.replace(q, ' ')
-    # the ShiaVerse source occasionally embeds English words (e.g. 'code words') — drop Latin runs
-    t = re.sub(r'[A-Za-z]+', ' ', t)
-    t = re.sub(r'[#`*|_]+', ' ', t)
-    t = re.sub(r'\s+', ' ', t).strip()
-    if not t: return None
-    parts = re.split(r'(?<=[۔.؟!؛\n])\s+', t)
-    cands = []
-    for p in parts:
-        p = p.strip(' ۔.؟!؛')
-        if not p or len(p) > int(cap * 4) or SURAH_HDR.search(p):
-            continue
-        if AYA_RE.search(p):  # ayah-number lists / surah header chunk
-            continue
-        n = norm(p)
-        i, m = best_signal(n)
-        if i is not None:
-            cands.append((i, len(p), p))
-    if not cands:
-        return None
-    cands.sort(key=lambda x: (x[0], x[1]))
-    best_prio = cands[0][0]
-    tier = [c for c in cands if c[0] == best_prio]
-    i, _, best = tier[salt % len(tier)]
-    if len(best) > cap:
-        cut = best[:cap]
-        sp = cut.rfind(' ')
-        best = (cut[:sp] if sp > 80 else cut).rstrip(' ،؛—') + '…'
-    # normalize display whitespace only; keep source wording intact
-    best = re.sub(r'\s+', ' ', best).strip()
-    for a, b in [('،،', '؛'), ('۔،', '؛'), ('،۔', '؛'), ('۔۔', '۔'), ('..', '۔')]:
-        best = best.replace(a, b)
-    best = re.sub(r'([۔،])\1+', r'\1', best)
-    best = best.translate(str.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹'))
-    return best
-
-def topic_of(raw, sources):
-    n = norm(raw or '')
-    i, m = best_signal(n)
-    return TOPIC.get(SIG_PRIO[i][0], 'اہلِ بیتؑ کا مقام') if i is not None else 'اہلِ بیتؑ کا مقام'
-
-LEADING = re.compile(r'^(اور|پھر|پس|تو|لیکن|مگر|حالانکہ|علاوہ|پھر بھی|اور یہ|اور وہ|اور اس|اور ان|ان)\s+')
-MUQATTAAT = re.compile(r'^[؀-ۿ\s‍‌]{1,8}$')
-def _strip_tr(s):
-    for q in ['’’','‘‘','“','”','«','»','‘','’','\"']:
-        s = s.replace(q, ' ')
-    s = s.replace('.', ' ').replace('۔', ' ').replace('…', ' ').replace('(', '').replace(')', '')
-    s = re.sub(r'[A-Za-z0-9\[\]{}]+', ' ', s)
-    return re.sub(r'\s+', ' ', s).strip().strip(' ،؛—-')
-def snip(tr, cap=90):
-    s = tr.strip()
-    s = re.sub(r'\s+', ' ', s)
-    first = re.split(r'[،؛—!؟]', s, 1)[0].strip()
-    for _ in range(3):
-        first = LEADING.sub('', first).strip()
-    first = _strip_tr(first)
-    if len(first) >= 25:
-        out = first
-    else:
-        full = s
-        for _ in range(3):
-            full = LEADING.sub('', full).strip()
-        full = _strip_tr(full)
-        if MUQATTAAT.match(full):
-            return 'حروفِ مقطعات'
-        out = full
-    if len(out) > cap:
-        cut = out[:cap]
-        sp = cut.rfind(' ')
-        out = (cut[:sp] if sp > 40 else cut).rstrip(' ،؛—') + '…'
-    return out if out else 'اس آیت کا مضمون'
-
-LINK_TEMPLATES = [
-    'ربط: پچھلی آیت ({n}) کا مضمون ’’{prev}‘‘ تھا؛ اسی تسلسل میں یہ آیت ’’{curr}‘‘ بیان کرتی ہے — دونوں کو جوڑ کر پڑھیں تو کلام کا پورا رنگ نکلتا ہے۔',
-    'ربط: پچھلی آیت ({n}) میں ’’{prev}‘‘؛ یہاں کلام آگے بڑھ کر ’’{curr}‘‘ پر مرکوز ہو جاتا ہے — پہلی بات ہی اس کی بنیاد ہے۔',
-    'ربط: ’’{prev}‘‘ — پچھلی آیت ({n}) کی یہی بات یہاں ’’{curr}‘‘ کی صورت سامنے آتی ہے؛ دونوں آیات ایک دوسرے کو واضح کرتی ہیں۔',
-    'ربط: پچھلی آیت ({n}) کا خلاصہ ’’{prev}‘‘ ہے؛ یہ آیت اسی موضوع کو ’’{curr}‘‘ کے انداز میں آگے لے جاتی ہے۔',
-    'ربط: پچھلی آیت ({n}) نے ’’{prev}‘‘ کی بنیاد رکھی؛ اس آیت میں اسی پر عمارت کھڑی ہو کر ’’{curr}‘‘ کا مضمون ابھرتا ہے۔',
-    'ربط: پچھلی آیت ({n}) میں ’’{prev}‘‘ — اسی کے منطقی نتیجے کے طور پر یہاں ’’{curr}‘‘ آیا ہے؛ آیات کی ترتیب غور طلب ہے۔',
-    'ربط: اگر پچھلی آیت ({n}) ’’{prev}‘‘ کی تصویر تھی، تو یہ آیت ’’{curr}‘‘ کی تصویر ہے؛ قرآن میں آیات آپس میں پیوستہ ہیں۔',
-    'ربط: پچھلی آیت ({n}) پڑھنے کے فوراً بعد یہ آیت پڑھیں — ’’{prev}‘‘ کے ساتھ یہاں ’’{curr}‘‘ ملتا ہے؛ دونوں ایک ہی بات کے دو پہلو ہیں۔',
-]
-
-def sanitize(t):
-    t = CTRL.sub('', t)
-    return re.sub(r'\s+', ' ', t).strip()
+MARKER = 'اہلِ بیتؑ کا نکتہ'
 
 def next_label(talighe):
     mx = 0
@@ -178,69 +94,29 @@ def next_label(talighe):
     return mx
 
 def main():
+    for qid, point in AHL_BAYT_POINTS.items():
+        if point.count('’’') != point.count('‘‘'):
+            sys.exit(f'quote imbalance in point for ID {qid}')
     db = sqlite3.connect(DB)
-    orig = sqlite3.connect(ORIG)
-    miz = sqlite3.connect(MIZ)
-    mz_map = dict(miz.execute('SELECT ayah_mapping.id, content.content FROM ayah_mapping JOIN content ON content.content_id = ayah_mapping.content_id').fetchall())
-    passage_ord = {}
-    from collections import Counter
-    cnt = Counter()
-    for aid, cid in miz.execute('SELECT id, content_id FROM ayah_mapping ORDER BY id'):
-        passage_ord[aid] = cnt[cid]; cnt[cid] += 1
-    rows = db.execute('SELECT ID, chapter, verse, tr, talighe FROM Quran ORDER BY ID').fetchall()
-    orig_tal = dict(orig.execute('SELECT ID, talighe FROM Quran').fetchall())
-    prev_tr = {}
-    for qid, ch, v, tr, tal in rows:
-        prev_tr[qid] = (ch, tr)
-    added_ahl = added_link = skipped_ahl = skipped_link = 0
-    for qid, ch, v, tr, tal in rows:
-        tal = tal or ''
-        lines = []
-        lab = next_label(tal)
-        # ---- Ahl al-Bayt point
-        if 'اہلِ بیتؑ کا نکتہ' not in tal:
-            old_raw = orig_tal.get(qid)
-            mz_raw = mz_map.get(qid, '')
-            old_n, mz_n = norm(old_raw or ''), norm(mz_raw)
-            _, m_old = best_signal(old_n)
-            _, m_mz = best_signal(mz_n)
-            if m_old is not None and m_mz is not None:
-                old_q = clean_excerpt(old_raw, 170)
-                mz_q = clean_excerpt(mz_raw, 150, salt=passage_ord.get(qid, 0))
-                topic = topic_of(old_raw + ' ' + mz_raw, None)
-                lab += 1
-                if old_q and mz_q:
-                    lines.append(f'{to_eastern(lab)}۔ اہلِ بیتؑ کا نکتہ: {topic} — تفسیرِ مبین: {old_q}؛ المیزان: {mz_q}')
-                elif old_q:
-                    lines.append(f'{to_eastern(lab)}۔ اہلِ بیتؑ کا نکتہ: {topic} — تفسیرِ مبین کے مطابق {old_q}؛ المیزان میں بھی اسی آیت کے ذیل میں اہلِ بیتؑ کا ذکر ملتا ہے۔')
-                elif mz_q:
-                    lines.append(f'{to_eastern(lab)}۔ اہلِ بیتؑ کا نکتہ: {topic} — المیزان کے مطابق {mz_q}؛ تفسیرِ مبین میں بھی اسی آیت کے ذیل میں اہلِ بیتؑ کا ذکر ملتا ہے۔')
-                else:
-                    lines.append(f'{to_eastern(lab)}۔ اہلِ بیتؑ کا نکتہ: {topic} — تفسیرِ مبین اور المیزان دونوں اس آیت کے ذیل میں اہلِ بیتؑ کے بارے میں روایات اور تشریح نقل کرتی ہیں۔')
-                added_ahl += 1
-        else:
-            skipped_ahl += 1
-        # ---- previous-verse link (skip first ayah of each surah)
-        if v != 1 and 'ربط:' not in tal:
-            ptxt = prev_tr.get(qid - 1, (None, ''))[1]
-            pchap = prev_tr.get(qid - 1, (None, ''))[0]
-            n_line = db.execute('SELECT verse FROM Quran WHERE ID=?', (qid - 1,)).fetchone()[0]
-            prev = snip(ptxt)
-            curr = snip(tr)
-            lab += 1
-            tpl = LINK_TEMPLATES[qid % len(LINK_TEMPLATES)]
-            lines.append(f'{to_eastern(lab)}۔ ' + tpl.format(n=to_eastern(n_line), prev=prev, curr=curr))
-            added_link += 1
-        elif v == 1:
-            skipped_link += 1
-        if lines:
-            new_tal = tal.rstrip('\n') + '\n' + '\n'.join(lines)
+    try:
+        added = skipped = 0
+        for qid, point in sorted(AHL_BAYT_POINTS.items()):
+            row = db.execute('SELECT talighe FROM Quran WHERE ID=?', (qid,)).fetchone()
+            if row is None:
+                sys.exit(f'ID {qid} not found in {DB}')
+            tal = row[0] or ''
+            if MARKER in tal:
+                skipped += 1
+                continue
+            lab = next_label(tal) + 1
+            new_tal = tal.rstrip('\n') + '\n' + f'{to_eastern(lab)}۔ {point}'
             db.execute('UPDATE Quran SET talighe=? WHERE ID=?', (new_tal, qid))
-    db.commit()
-    db.close()
-    print(f'DB: {DB}')
-    print(f'ahl al-bayt points added: {added_ahl} (already present: {skipped_ahl})')
-    print(f'previous-verse links added: {added_link} (surah-first skipped: {skipped_link})')
+            added += 1
+        db.commit()
+        print(f'DB: {DB}')
+        print(f'ahl al-bayt points added: {added} (already present: {skipped})')
+    finally:
+        db.close()
 
 if __name__ == '__main__':
     main()
